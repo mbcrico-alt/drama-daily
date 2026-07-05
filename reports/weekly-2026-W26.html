@@ -18,25 +18,24 @@
 <style>
   .card-hero{width:100%;aspect-ratio:16/9;overflow:hidden;background:#e6e1ea;border-radius:5px 5px 0 0}
   .card-hero img{width:100%;height:100%;object-fit:cover;object-position:center 22%;display:block}
-  /* 허브 목록 카드 재설계: 요약 문구는 아래 행 전체폭으로 줄바꿈 */
-  .nav-row{grid-template-columns:20px 60px 1fr auto !important;
-    grid-template-areas:"rank thumb title grade" "rank thumb head head" "rank thumb meta go" !important;
-    gap:4px 13px !important; align-items:center !important; padding:14px 16px !important}
+  /* 허브 목록 카드: 상단 좌=썸네일+제목, 우=등급/시청률(세로) · 하단=요약 전체폭 */
+  .nav-row{grid-template-columns:20px 64px 1fr auto !important;
+    grid-template-areas:"rank thumb title grade" "rank thumb title meta" "head head head go" !important;
+    gap:2px 12px !important; align-items:center !important; padding:14px 16px !important}
   .nav-rank{grid-area:rank;align-self:center;font-size:15px;font-weight:800;color:var(--muted);text-align:center}
-  .nav-thumb{grid-area:thumb;align-self:center;width:60px;height:60px;border-radius:8px;overflow:hidden;background:#e6e1ea}
+  .nav-thumb{grid-area:thumb;align-self:center;width:64px;height:64px;border-radius:8px;overflow:hidden;background:#e6e1ea}
   .nav-thumb img{width:100%;height:100%;object-fit:cover;object-position:center 22%;display:block}
-  .nav-title{grid-area:title;align-self:end}
+  .nav-title{grid-area:title;align-self:center;word-break:keep-all}
   .nav-grade-wrap{grid-area:grade;align-self:end;display:flex;align-items:center;justify-content:flex-end;gap:6px;white-space:nowrap}
-  .nav-head{grid-area:head;align-self:center;white-space:normal !important;overflow:visible !important;text-overflow:clip !important;font-size:13px;line-height:1.5;color:var(--ink);margin:2px 0 !important}
-  .nav-meta{grid-area:meta;align-self:start;font-size:11.5px;color:var(--muted)}
-  .nav-go{grid-area:go;align-self:start;text-align:right;margin-top:0 !important}
+  .nav-meta{grid-area:meta;align-self:start;display:flex;flex-direction:column;align-items:flex-end;line-height:1.35;font-size:11.5px;color:var(--muted);white-space:nowrap;margin-top:2px}
+  .nav-head{grid-area:head;align-self:center;white-space:normal !important;overflow:visible !important;text-overflow:clip !important;font-size:13px;line-height:1.5;color:var(--ink);margin:6px 0 0 !important}
+  .nav-go{grid-area:go;align-self:center;text-align:right;white-space:nowrap;margin:6px 0 0 !important}
   @media(max-width:680px){
-    .nav-row{grid-template-columns:18px 52px 1fr auto !important;
-      grid-template-areas:"rank thumb title title" "rank thumb grade grade" "rank thumb head head" "rank thumb meta go" !important;
-      gap:3px 10px !important;padding:12px !important}
-    .nav-thumb{width:52px;height:52px;align-self:start}
-    .nav-title{align-self:end}
-    .nav-grade-wrap{justify-content:flex-start;align-self:center}
+    .nav-row{grid-template-columns:18px 56px 1fr auto !important;gap:2px 9px !important;padding:12px !important}
+    .nav-thumb{width:56px;height:56px}
+    .nav-title{font-size:15px}
+    .nav-meta{font-size:10.5px}
+    .nav-grade-wrap .steps{display:none}
   }
 </style>
 </head>
@@ -352,7 +351,7 @@
           <polyline class="line" points="10,42 33.6,48 57.3,33.75 80.9,36 104.5,39 128.2,39 151.8,35.25 175.5,38.25 199.1,33 222.7,39 246.4,30 270,37.5"/>
           <circle class="pt" cx="10" cy="42" r="2.6"/><circle class="pt" cx="246.4" cy="30" r="3.2"/><circle class="pt" cx="270" cy="37.5" r="3.2"/>
           <text class="cval" x="10" y="36">4.4</text><text class="cval" x="246.4" y="24" text-anchor="middle">6.0</text><text class="cval" x="270" y="49" text-anchor="end">5.0</text>
-          <text class="clab" x="10" y="90">1화</text><text class="clab" x="246.4" y="90" text-anchor="middle">11화</text><text class="clab" x="270" y="90" text-anchor="end">12화·完</text>
+          <text class="clab" x="10" y="90">1화</text><text class="clab" x="270" y="90" text-anchor="end">12화·完</text>
         </svg>
         <div class="cap">5~6%대 안정적 유지, 11화 자체최고 후 피날레 5.0% 마무리(순간 최고 8.2%)</div>
       </div>
@@ -405,7 +404,7 @@
         <span class="nav-title"><span class="tag original">OTT</span>참교육<span class="nav-ep">넷플릭스 · 이월</span><span class="event on">글로벌 1위</span></span>
         <span class="nav-grade-wrap"><span class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span> <span class="nav-grade g5">매우 높음</span></span>
         <span class="nav-head">넷플릭스 비영어 글로벌 1위 3주 연속 — 이번 주도 압도적 최강</span>
-        <span class="nav-meta">순위 <span class="flat">─ 유지</span> · 호평 70%</span>
+        <span class="nav-meta"><span class="m1">순위 <span class="flat">─ 유지</span></span><span class="m2">호평 70%</span></span>
         <span class="nav-go">자세히 →</span>
       </a>
 
@@ -415,7 +414,7 @@
         <span class="nav-title"><span class="tag broadcast">방송</span>김부장<span class="nav-ep">SBS 금토 · 1~2화</span><span class="event new">신작</span></span>
         <span class="nav-grade-wrap"><span class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span> <span class="nav-grade g4">높음</span></span>
         <span class="nav-head">첫방 9.5%→2화 15.7% 급등, 소지섭 복귀 주말 화제 견인</span>
-        <span class="nav-meta">순위 <span class="rankchg new">NEW</span> · 호평 62% <span class="up">▲</span></span>
+        <span class="nav-meta"><span class="m1">순위 <span class="rankchg new">NEW</span></span><span class="m2">호평 62% <span class="up">▲</span></span></span>
         <span class="nav-go">자세히 →</span>
       </a>
 
@@ -425,7 +424,7 @@
         <span class="nav-title"><span class="tag original">OTT</span>맨 끝줄 소년<span class="nav-ep">넷플릭스 · 6/26</span><span class="event new">신작</span></span>
         <span class="nav-grade-wrap"><span class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span> <span class="nav-grade g4">높음</span></span>
         <span class="nav-head">최민식 데뷔작, 공개 첫 주 비영어 글로벌 8위·국내 2위</span>
-        <span class="nav-meta">순위 <span class="rankchg new">NEW</span> · 호평 62%</span>
+        <span class="nav-meta"><span class="m1">순위 <span class="rankchg new">NEW</span></span><span class="m2">호평 62%</span></span>
         <span class="nav-go">자세히 →</span>
       </a>
 
@@ -435,7 +434,7 @@
         <span class="nav-title"><span class="tag broadcast">방송</span>신입사원 강회장<span class="nav-ep">JTBC 토일 · 방영중</span><span class="event on">방영중</span></span>
         <span class="nav-grade-wrap"><span class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span> <span class="nav-grade g4">높음</span></span>
         <span class="nav-head">자체최고 11%대 유지, JTBC 토일 화제성 싹쓸이 — 이준영·손현주</span>
-        <span class="nav-meta">순위 <span class="up">▲2</span> · 호평 68%</span>
+        <span class="nav-meta"><span class="m1">순위 <span class="up">▲2</span></span><span class="m2">호평 68%</span></span>
         <span class="nav-go mute">─</span>
       </div>
 
@@ -445,7 +444,7 @@
         <span class="nav-title"><span class="tag broadcast">방송</span>닥터 섬보이<span class="nav-ep">ENA 월화 · 방영중</span><span class="event on">방영중</span></span>
         <span class="nav-grade-wrap"><span class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span> <span class="nav-grade g3">보통</span></span>
         <span class="nav-head">ENA 역대 최고 출발(5회 연속 1위), 이재욱·신예은 의학물</span>
-        <span class="nav-meta">순위 <span class="up">▲1</span> · 호평 68%</span>
+        <span class="nav-meta"><span class="m1">순위 <span class="up">▲1</span></span><span class="m2">호평 68%</span></span>
         <span class="nav-go mute">─</span>
       </div>
 
@@ -455,7 +454,7 @@
         <span class="nav-title"><span class="tag broadcast">방송</span>오십프로<span class="nav-ep">MBC 금토 · 11~12화</span><span class="event end">종영</span></span>
         <span class="nav-grade-wrap"><span class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span> <span class="nav-grade g3">보통</span></span>
         <span class="nav-head">피날레 최고 8.2%·최종 5.0%, 3인 공조로 유종의 미</span>
-        <span class="nav-meta">순위 <span class="flat">─</span> · 호평 70%</span>
+        <span class="nav-meta"><span class="m1">순위 <span class="flat">─</span></span><span class="m2">호평 70%</span></span>
         <span class="nav-go">자세히 →</span>
       </a>
 

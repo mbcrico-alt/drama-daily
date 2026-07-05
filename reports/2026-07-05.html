@@ -18,25 +18,24 @@
 <style>
   .card-hero{width:100%;aspect-ratio:16/9;overflow:hidden;background:#e6e1ea;border-radius:5px 5px 0 0}
   .card-hero img{width:100%;height:100%;object-fit:cover;object-position:center 22%;display:block}
-  /* 허브 목록 카드 재설계: 요약 문구는 아래 행 전체폭으로 줄바꿈 */
-  .nav-row{grid-template-columns:20px 60px 1fr auto !important;
-    grid-template-areas:"rank thumb title grade" "rank thumb head head" "rank thumb meta go" !important;
-    gap:4px 13px !important; align-items:center !important; padding:14px 16px !important}
+  /* 허브 목록 카드: 상단 좌=썸네일+제목, 우=등급/시청률(세로) · 하단=요약 전체폭 */
+  .nav-row{grid-template-columns:20px 64px 1fr auto !important;
+    grid-template-areas:"rank thumb title grade" "rank thumb title meta" "head head head go" !important;
+    gap:2px 12px !important; align-items:center !important; padding:14px 16px !important}
   .nav-rank{grid-area:rank;align-self:center;font-size:15px;font-weight:800;color:var(--muted);text-align:center}
-  .nav-thumb{grid-area:thumb;align-self:center;width:60px;height:60px;border-radius:8px;overflow:hidden;background:#e6e1ea}
+  .nav-thumb{grid-area:thumb;align-self:center;width:64px;height:64px;border-radius:8px;overflow:hidden;background:#e6e1ea}
   .nav-thumb img{width:100%;height:100%;object-fit:cover;object-position:center 22%;display:block}
-  .nav-title{grid-area:title;align-self:end}
+  .nav-title{grid-area:title;align-self:center;word-break:keep-all}
   .nav-grade-wrap{grid-area:grade;align-self:end;display:flex;align-items:center;justify-content:flex-end;gap:6px;white-space:nowrap}
-  .nav-head{grid-area:head;align-self:center;white-space:normal !important;overflow:visible !important;text-overflow:clip !important;font-size:13px;line-height:1.5;color:var(--ink);margin:2px 0 !important}
-  .nav-meta{grid-area:meta;align-self:start;font-size:11.5px;color:var(--muted)}
-  .nav-go{grid-area:go;align-self:start;text-align:right;margin-top:0 !important}
+  .nav-meta{grid-area:meta;align-self:start;display:flex;flex-direction:column;align-items:flex-end;line-height:1.35;font-size:11.5px;color:var(--muted);white-space:nowrap;margin-top:2px}
+  .nav-head{grid-area:head;align-self:center;white-space:normal !important;overflow:visible !important;text-overflow:clip !important;font-size:13px;line-height:1.5;color:var(--ink);margin:6px 0 0 !important}
+  .nav-go{grid-area:go;align-self:center;text-align:right;white-space:nowrap;margin:6px 0 0 !important}
   @media(max-width:680px){
-    .nav-row{grid-template-columns:18px 52px 1fr auto !important;
-      grid-template-areas:"rank thumb title title" "rank thumb grade grade" "rank thumb head head" "rank thumb meta go" !important;
-      gap:3px 10px !important;padding:12px !important}
-    .nav-thumb{width:52px;height:52px;align-self:start}
-    .nav-title{align-self:end}
-    .nav-grade-wrap{justify-content:flex-start;align-self:center}
+    .nav-row{grid-template-columns:18px 56px 1fr auto !important;gap:2px 9px !important;padding:12px !important}
+    .nav-thumb{width:56px;height:56px}
+    .nav-title{font-size:15px}
+    .nav-meta{font-size:10.5px}
+    .nav-grade-wrap .steps{display:none}
   }
 </style>
 </head>
@@ -345,7 +344,7 @@
         <span class="nav-title"><span class="tag broadcast">방송</span>김부장<span class="nav-ep">SBS 금토 · 4화</span></span>
         <span class="nav-grade-wrap"><span class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span> <span class="nav-grade g5">매우 높음</span></span>
         <span class="nav-head">4화 21.6%(순간 25.1%)·4회 만에 20% 돌파, 해외 20개국 1위 독주</span>
-        <span class="nav-meta">전국 21.6% · 호평 78% <span class="up">▲</span></span>
+        <span class="nav-meta"><span class="m1">전국 21.6%</span><span class="m2">호평 78% <span class="up">▲</span></span></span>
         <span class="nav-go">자세히 →</span>
       </a>
 
@@ -355,7 +354,7 @@
         <span class="nav-title"><span class="tag broadcast">방송</span>신입사원 강회장<span class="nav-ep">JTBC 토일 · 11화</span></span>
         <span class="nav-grade-wrap"><span class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span> <span class="nav-grade g4">높음</span></span>
         <span class="nav-head">11화 10.8%(4연속 10%+), "나잖아, 강용호" 반전 엔딩 화제</span>
-        <span class="nav-meta">전국 10.8% · 호평 70% <span class="up">▲</span></span>
+        <span class="nav-meta"><span class="m1">전국 10.8%</span><span class="m2">호평 70% <span class="up">▲</span></span></span>
         <span class="nav-go">자세히 →</span>
       </a>
 
@@ -365,7 +364,7 @@
         <span class="nav-title"><span class="tag broadcast">방송</span>결혼의 완성<span class="nav-ep">KBS2 토일 · 1화 첫방</span><span class="event new">신작</span></span>
         <span class="nav-grade-wrap"><span class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span> <span class="nav-grade g3">보통</span></span>
         <span class="nav-head">첫방 4.4% 출발, 남궁민 7년만 KBS 복귀 범죄 스릴러</span>
-        <span class="nav-meta">전국 4.4% · 호평 55% <span class="flat">─</span></span>
+        <span class="nav-meta"><span class="m1">전국 4.4%</span><span class="m2">호평 55% <span class="flat">─</span></span></span>
         <span class="nav-go">자세히 →</span>
       </a>
 
