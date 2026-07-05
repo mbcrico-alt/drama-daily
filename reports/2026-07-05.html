@@ -1,0 +1,343 @@
+<style>
+  :root{--ground:#EFEDE9;--surface:#FFFFFF;--ink:#1A1722;--muted:#716C7E;--hair:#E0DDD8;--accent:#6D30C4;--pos:#1B916A;--neg:#D23A57;--neu:#B0891F;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ground)}
+  .wrap{max-width:940px;margin:0 auto;padding:24px 20px 64px;color:var(--ink);font-family:Pretendard,"Apple SD Gothic Neo",system-ui,-apple-system,sans-serif;line-height:1.55}
+  .view{display:none}
+  #overview{display:block}
+  .detail:target{display:block}
+  .detail:target ~ #overview{display:none}
+  .board{display:inline-flex;gap:2px;background:var(--hair);padding:3px;border-radius:8px;margin-bottom:16px}
+  .board-tab{font-size:12.5px;font-weight:700;color:var(--muted);text-decoration:none;padding:6px 15px;border-radius:6px;transition:color .15s}
+  .board-tab.active{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.07)}
+  .board-tab:hover:not(.active){color:var(--ink)}
+  .masthead{border-bottom:2px solid var(--ink);padding-bottom:13px;margin-bottom:4px}
+  .brand{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .brand h1{font-family:Pretendard,"Apple SD Gothic Neo",system-ui,sans-serif;font-weight:800;font-size:27px;letter-spacing:-.01em;margin:0}
+  .brand h1 .k{color:var(--accent)}
+  .issue{font-size:12px;color:var(--muted);text-align:right}
+  .datenav{display:inline-flex;align-items:center;gap:6px;justify-content:flex-end}
+  .datebtn{display:inline-flex;height:22px;padding:0 8px;align-items:center;justify-content:center;border:1px solid var(--hair);border-radius:4px;color:var(--muted);text-decoration:none;font-size:11px;background:var(--surface)}
+  .datebtn:hover{border-color:var(--accent);color:var(--accent)}
+  .datepick{font-family:inherit;font-size:12px;color:var(--ink);border:1px solid var(--hair);border-radius:4px;padding:3px 6px;background:var(--surface)}
+  .issue-sub{font-size:11.5px;color:var(--muted);margin-top:5px}
+  .kicker{text-transform:uppercase;letter-spacing:.18em;font-size:10.5px;font-weight:700;color:var(--accent);margin:0 0 6px}
+  .summary{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--hair);border:1px solid var(--hair);margin:18px 0 20px}
+  .stat{background:var(--ground);padding:11px 14px}
+  .stat .n{font-size:22px;font-weight:800;letter-spacing:-.02em}
+  .stat .l{font-size:11px;color:var(--muted);margin-top:2px}
+  .sect-label{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:700;margin:0 0 11px}
+  .g5{color:var(--accent)}.g4{color:var(--accent)}.g3{color:var(--neu)}.g2{color:var(--muted)}.g1{color:var(--muted)}
+  .steps{display:inline-flex;gap:3px;vertical-align:middle}
+  .steps i{width:11px;height:6px;border-radius:2px;background:var(--hair);display:block}
+  .steps i.on{background:var(--accent)}
+  .up{color:var(--pos)}.down{color:var(--neg)}.flat{color:var(--muted)}
+  .navlist{display:flex;flex-direction:column;gap:10px}
+  .nav-row{display:grid;grid-template-columns:22px 1fr auto;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--hair);border-radius:5px;padding:14px 16px;text-decoration:none;color:inherit;transition:border-color .15s,transform .15s}
+  .nav-row:hover{border-color:var(--accent);transform:translateY(-1px)}
+  .nav-no{font-family:Pretendard,sans-serif;font-size:16px;font-weight:800;color:var(--muted);text-align:center}
+  .nav-main{min-width:0}
+  .nav-title{font-size:16px;font-weight:800;letter-spacing:-.01em}
+  .nav-ep{font-size:11.5px;color:var(--muted);font-weight:600;margin-left:7px}
+  .nav-head{font-size:13px;color:var(--ink);margin-top:4px;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .nav-right{text-align:right;flex-shrink:0;display:flex;flex-direction:column;align-items:flex-end;gap:5px}
+  .nav-grade{font-size:13px;font-weight:800}
+  .nav-meta{font-size:11px;color:var(--muted)}
+  .nav-go{color:var(--accent);font-weight:700;font-size:12px;margin-top:2px}
+  .tag{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.06em;padding:2px 6px;border-radius:3px;text-transform:uppercase;vertical-align:middle;margin-right:6px}
+  .tag.broadcast{background:var(--accent);color:#fff}
+  .tag.original{background:#12121a;color:#fff}
+  .event{display:inline-block;font-size:9.5px;font-weight:800;padding:2px 6px;border-radius:3px;vertical-align:middle;margin-left:4px}
+  .event.new{background:#E9E1F7;color:var(--accent)}
+  .back{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:700;color:var(--accent);text-decoration:none;margin-bottom:14px}
+  .back:hover{text-decoration:underline}
+  .card{background:var(--surface);border:1px solid var(--hair);border-radius:5px;overflow:hidden}
+  .card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;padding:16px 18px 12px}
+  .card h2{margin:0;font-size:21px;font-weight:800;letter-spacing:-.01em}
+  .meta{font-size:12px;color:var(--muted);margin-top:3px}
+  .dday{font-weight:700;color:var(--ink)}
+  .buzz-block{text-align:right;flex-shrink:0}
+  .buzz-l{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+  .buzz-grade{font-size:21px;font-weight:800;line-height:1.1;margin-top:3px}
+  .buzz-steps{display:flex;gap:3px;justify-content:flex-end;margin-top:7px}
+  .buzz-steps i{width:15px;height:7px;border-radius:2px;background:var(--hair);display:block}
+  .buzz-steps i.on{background:var(--accent)}
+  .buzz-delta{font-size:12px;font-weight:700;margin-top:6px}
+  .senti{display:flex;height:8px;border-radius:4px;overflow:hidden;margin:0 18px}
+  .senti span{display:block}
+  .senti .p{background:var(--pos)}.senti .n{background:var(--neg)}.senti .u{background:var(--neu)}
+  .senti-legend{display:flex;gap:14px;font-size:11px;color:var(--muted);margin:7px 18px 0;flex-wrap:wrap;align-items:center}
+  .senti-legend .rating{color:var(--accent);font-weight:800;font-size:12px}
+  .senti-legend .samp{color:var(--muted);margin-left:auto}
+  .dot{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:4px;vertical-align:middle}
+  .card-body{display:grid;grid-template-columns:1.1fr 1fr;gap:0;border-top:1px solid var(--hair);margin-top:14px}
+  .col{padding:14px 18px}
+  .col+.col{border-left:1px solid var(--hair)}
+  .col h3{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin:0 0 10px;font-weight:700}
+  .col h3 .ep{color:var(--accent);font-weight:800}
+  .issues{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+  .issues li{font-size:13.5px;padding-left:16px;position:relative}
+  .issues li::before{content:"";position:absolute;left:0;top:8px;width:5px;height:5px;border-radius:50%;background:var(--accent)}
+  .axis{font-size:11px;font-weight:800;color:var(--accent);margin-right:4px}
+  .clips{margin:11px 18px 0;font-size:12px;color:var(--muted)}
+  .clips a{color:var(--accent);text-decoration:none;font-weight:600}
+  .clips a:hover{text-decoration:underline}
+  .articles{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px}
+  .articles a{color:var(--ink);text-decoration:none;font-size:13px;display:block}
+  .articles a:hover .h{text-decoration:underline;color:var(--accent)}
+  .articles .src{font-size:11px;color:var(--muted);display:block;margin-top:1px}
+  .articles .src b{color:var(--accent);font-weight:700}
+  .quote{border-left:3px solid var(--hair);padding:2px 0 2px 11px;margin:0 0 10px;font-size:13px}
+  .quote .who{font-size:11px;color:var(--muted);margin-top:3px}
+  .quote .who a{color:inherit;text-decoration:none}
+  .quote .who a:hover{text-decoration:underline;color:var(--accent)}
+  .pill{font-size:10px;font-weight:700;padding:1px 6px;border-radius:20px;margin-left:6px}
+  .pill.pos{background:#E4F3EC;color:var(--pos)}
+  .pill.neg{background:#FBE6EA;color:var(--neg)}
+  .window{font-size:11px;color:var(--muted);margin:0 18px 12px}
+  footer{margin-top:26px;padding-top:16px;border-top:1px solid var(--hair);font-size:12px;color:var(--muted)}
+  footer b{color:var(--ink)}
+  @media(max-width:680px){.summary{grid-template-columns:repeat(2,1fr)}.card-body{grid-template-columns:1fr}.col+.col{border-left:none;border-top:1px solid var(--hair)}.nav-head{white-space:normal}}
+</style>
+
+<div class="wrap">
+
+  <nav class="board">
+    <a class="board-tab active" href="https://claude.ai/code/artifact/3ca82212-c264-4898-bb39-f793225f1f9b">데일리</a>
+    <a class="board-tab" href="https://claude.ai/code/artifact/0b60b130-7c42-41b3-a9c7-6070167223f3">위클리</a>
+    <a class="board-tab" href="https://claude.ai/code/artifact/627850c8-7ba3-44d6-bbdc-b0f50fff455b">월간</a>
+  </nav>
+
+  <!-- 김부장 -->
+  <section class="view detail" id="drama-kimbujang">
+    <a class="back" href="#overview">← 전체 보기</a>
+    <div class="card">
+      <div class="card-top">
+        <div>
+          <span class="tag broadcast">방송</span>
+          <h2>김부장</h2>
+          <div class="meta">SBS 금토 · 4화 방송(7/4 토) · 소지섭 주연</div>
+        </div>
+        <div class="buzz-block">
+          <div class="buzz-l">화제성</div>
+          <div class="buzz-grade g5">매우 높음</div>
+          <div class="buzz-steps"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
+          <div class="buzz-delta up">▲ 자체최고 (3화 18.8%→4화 21.6%)</div>
+        </div>
+      </div>
+      <div class="senti"><span class="p" style="width:78%"></span><span class="u" style="width:14%"></span><span class="n" style="width:8%"></span></div>
+      <div class="senti-legend">
+        <span class="rating">전국 21.6%</span>
+        <span><span class="dot" style="background:var(--pos)"></span>호평 78%</span>
+        <span><span class="dot" style="background:var(--neu)"></span>중립 14%</span>
+        <span><span class="dot" style="background:var(--neg)"></span>혹평 8%</span>
+        <span class="samp">표본 적음(참고)</span>
+      </div>
+      <div class="card-body">
+        <div class="col">
+          <h3>오늘의 이슈 <span class="ep">· 4화 (7/4 토 방송)</span></h3>
+          <ul class="issues">
+            <li><span class="axis">[성과]</span>4화 전국 21.6%·수도권 22.7%·순간 25.1% — <b>4회 만에 20% 돌파</b>('눈물의 여왕'보다 빠름), SBS 금토 역대 3위 + 넷플릭스 해외 20개국 1위</li>
+            <li><span class="axis">[화제 요인]</span>윤경호 합류 "다 죽었어"로 3인방 완성 — 소지섭 '연기대상 예약' 소리까지 나오는 독주 조짐</li>
+            <li><span class="axis">[시청 반응]</span>액션·사이다에 호평 압도, 동시간대 신작 '결혼의 완성'(4.4%)을 크게 따돌린 독주</li>
+          </ul>
+          <div class="clips">🎬 화제 장면 · <a href="https://www.youtube.com/shorts/Ngim4E57bJY">소지섭 맨몸 액션 (쇼츠)</a> · <a href="https://www.youtube.com/watch?v=9KFkdt14xJw">3인방 각성 사이다 액션 (클립)</a></div>
+        </div>
+        <div class="col">
+          <h3>주요 기사 <span class="ep">· 최신순</span></h3>
+          <ul class="articles">
+            <li><a href="https://v.daum.net/v/20260705093151349"><span class="h">남궁민 일단 후퇴…'김부장' 소지섭, 순간 25.1% 터졌다 '독주'</span><span class="src"><b>엑스포츠뉴스</b> · 오늘 오전</span></a></li>
+            <li><a href="https://news.nate.com/view/20260705n03042"><span class="h">'김부장' 21.6%로 남궁민 '결혼의 완성' 기죽였다</span><span class="src"><b>스타뉴스(네이트)</b> · 오늘 오전</span></a></li>
+            <li><a href="https://www.starnewskorea.com/broadcast-drama/2026/07/05/2026070510374311351"><span class="h">시청률 20% 돌파 '김부장', 해외서도 20개국 1위 동시 흥행</span><span class="src"><b>스타뉴스</b> · 오늘 오전</span></a></li>
+            <li><a href="https://edaily.co.kr/News/Read?mediaCodeNo=257&newsId=01230006645511568"><span class="h">소지섭 '김부장' 4회 만에 20% 돌파…'눈물의 여왕'보다 빨라</span><span class="src"><b>이데일리</b> · 오늘</span></a></li>
+            <li><a href="https://www.mt.co.kr/entertainment/2026/07/04/2026070415477255122"><span class="h">'김부장' 윤경호, 소지섭X최대훈과 합류 성공…"다 죽었어"</span><span class="src"><b>머니투데이</b> · 어젯밤</span></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="card-body" style="border-top:1px solid var(--hair)">
+        <div class="col" style="grid-column:1/-1">
+          <h3>SNS·커뮤니티 반응 <span class="ep">· 4화 방송 직후~오늘 08:00</span></h3>
+          <blockquote class="quote">"25% 실화? 소지섭 액션에 극장 온 줄, 윤경호 합류신 소름" <span class="pill pos">호평</span><div class="who"><a href="https://theqoo.net/square/4222781366">더쿠 →</a></div></blockquote>
+          <blockquote class="quote">"이젠 20% 넘네…경쟁작들 다 눌렀다" <span class="pill pos">호평</span><div class="who"><a href="https://gall.dcinside.com/board/kbj">디시 김부장 갤러리 →</a></div></blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 신입사원 강회장 -->
+  <section class="view detail" id="drama-kangchairman">
+    <a class="back" href="#overview">← 전체 보기</a>
+    <div class="card">
+      <div class="card-top">
+        <div>
+          <span class="tag broadcast">방송</span>
+          <h2>신입사원 강회장</h2>
+          <div class="meta">JTBC 토일 · 11화 방송(7/4 토, 종영 임박) · 이준영·손현주·이주명</div>
+        </div>
+        <div class="buzz-block">
+          <div class="buzz-l">화제성</div>
+          <div class="buzz-grade g4">높음</div>
+          <div class="buzz-steps"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+          <div class="buzz-delta up">▲ 4회 연속 10%+</div>
+        </div>
+      </div>
+      <div class="senti"><span class="p" style="width:70%"></span><span class="u" style="width:20%"></span><span class="n" style="width:10%"></span></div>
+      <div class="senti-legend">
+        <span class="rating">전국 10.8%</span>
+        <span><span class="dot" style="background:var(--pos)"></span>호평 70%</span>
+        <span><span class="dot" style="background:var(--neu)"></span>중립 20%</span>
+        <span><span class="dot" style="background:var(--neg)"></span>혹평 10%</span>
+        <span class="samp">표본 적음(참고)</span>
+      </div>
+      <div class="card-body">
+        <div class="col">
+          <h3>오늘의 이슈 <span class="ep">· 11화 (7/4 토 방송)</span></h3>
+          <ul class="issues">
+            <li><span class="axis">[성과]</span>11화 전국 10.8% — <b>4회 연속 10% 돌파</b>, 종영(7/5) 앞두고 자체 상승세</li>
+            <li><span class="axis">[화제 요인]</span>"왜 못 알아봐? 나잖아, 강용호" — 손현주 영혼 정체 공개 반전 엔딩에 안방극장 얼어붙음</li>
+            <li><span class="axis">[시청 반응]</span>막판 반전·강용호 각성에 호평, JTBC 토일 화제성 견인하며 유종의 미 기대</li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>주요 기사 <span class="ep">· 최신순</span></h3>
+          <ul class="articles">
+            <li><a href="https://v.daum.net/v/20260705000518560"><span class="h">납치된 이준영, 손현주 영혼 정체 밝혔다…"나잖아, 강용호"</span><span class="src"><b>스타뉴스</b> · 오늘 오전</span></a></li>
+            <li><a href="https://news.nate.com/view/20260705n04270"><span class="h">'신입사원 강회장' 시청률 4회 연속 10% ↑</span><span class="src"><b>스타뉴스(네이트)</b> · 오늘 오전</span></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="card-body" style="border-top:1px solid var(--hair)">
+        <div class="col" style="grid-column:1/-1">
+          <h3>SNS·커뮤니티 반응 <span class="ep">· 11화 방송 직후~오늘 08:00</span></h3>
+          <div class="window">※ "나잖아, 강용호" 반전 엔딩에 실시간 화제 — 커뮤니티 개별 표본은 제한적(참고)</div>
+          <div class="clips">🎬 화제 장면 · <a href="https://www.youtube.com/watch?v=SIi43nVHJWk">손현주 몸에 살아있는 강회장, 귀환 반전 (JTBC 클립)</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 결혼의 완성 -->
+  <section class="view detail" id="drama-marriage">
+    <a class="back" href="#overview">← 전체 보기</a>
+    <div class="card">
+      <div class="card-top">
+        <div>
+          <span class="tag broadcast">방송</span><span class="event new">신작</span>
+          <h2>결혼의 완성</h2>
+          <div class="meta">KBS2 토일(디즈니+ 동시공개) · 1화 첫방송(7/4 토) · 남궁민·이설·김대명 · 범죄 스릴러</div>
+        </div>
+        <div class="buzz-block">
+          <div class="buzz-l">화제성</div>
+          <div class="buzz-grade g3">보통</div>
+          <div class="buzz-steps"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div>
+          <div class="buzz-delta flat">─ 첫방송</div>
+        </div>
+      </div>
+      <div class="senti"><span class="p" style="width:55%"></span><span class="u" style="width:30%"></span><span class="n" style="width:15%"></span></div>
+      <div class="senti-legend">
+        <span class="rating">전국 4.4%</span>
+        <span><span class="dot" style="background:var(--pos)"></span>호평 55%</span>
+        <span><span class="dot" style="background:var(--neu)"></span>중립 30%</span>
+        <span><span class="dot" style="background:var(--neg)"></span>혹평 15%</span>
+        <span class="samp">표본 적음(참고)</span>
+      </div>
+      <div class="card-body">
+        <div class="col">
+          <h3>오늘의 이슈 <span class="ep">· 1화 (7/4 토 첫 방송)</span></h3>
+          <ul class="issues">
+            <li><span class="axis">[성과]</span>첫방 전국 4.4% 출발 — 김부장(21.6%)·강회장(10.8%) 강세 속 다소 낮은 시작</li>
+            <li><span class="axis">[화제 요인]</span>남궁민 7년 만의 KBS 복귀작 — 이혼 직전 납치된 아내를 구하는 신경외과의 강태주 범죄 스릴러</li>
+            <li><span class="axis">[시청 반응]</span>"남궁민이라 기대" vs "첫방 화력 약하다" 관망세 — 2화 이탈 여부가 관건</li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>주요 기사 <span class="ep">· 최신순</span></h3>
+          <ul class="articles">
+            <li><a href="https://sports.khan.co.kr/article/202607050836003"><span class="h">[스경X초점] '김부장'은 21%인데…'결혼의 완성' 남궁민, 4%로 출발</span><span class="src"><b>스포츠경향</b> · 오늘 오전</span></a></li>
+            <li><a href="https://www.topstarnews.net/news/articleView.html?idxno=16123920"><span class="h">'결혼의 완성' 첫 방송 시청률 4.4%로 출발</span><span class="src"><b>톱스타뉴스</b> · 오늘 오전</span></a></li>
+            <li><a href="https://www.mt.co.kr/entertainment/2026/07/03/2026070307007239904"><span class="h">'결혼의 완성', '김부장'·'강회장' 벽 높지만…남궁민이라 거는 기대</span><span class="src"><b>머니투데이</b> · 1일 전</span></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="card-body" style="border-top:1px solid var(--hair)">
+        <div class="col" style="grid-column:1/-1">
+          <h3>SNS·커뮤니티 반응 <span class="ep">· 1화 방송 직후~오늘 08:00</span></h3>
+          <div class="window">※ 첫방송 직후라 여론 형성 초기 — 커뮤니티 표본 부족(참고). 남궁민 연기 호평 vs 초반 몰입도 지적 혼재</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 허브 ============ -->
+  <section class="view" id="overview">
+    <header class="masthead">
+      <p class="kicker">Daily Drama Buzz Report</p>
+      <div class="brand">
+        <h1>드라마 반응 <span class="k">데일리</span></h1>
+        <div class="issue">
+          <div class="datenav">
+            <a class="datebtn" href="2026-07-04.html" title="이전 날">◀</a>
+            <input type="date" class="datepick" value="2026-07-05" onchange="if(this.value)location.href=this.value+'.html'">
+            <a class="datebtn" href="2026-07-06.html" title="다음 날">▶</a>
+          </div>
+          <div class="issue-sub">2026년 7월 5일 (일) · 오전 8:00 발송 · 어제(7/4 토) 방영분 · 3편</div>
+        </div>
+      </div>
+    </header>
+
+    <section class="summary">
+      <div class="stat"><div class="n">3</div><div class="l">모니터링 작품</div></div>
+      <div class="stat"><div class="n">10</div><div class="l">수집 기사 (24h)</div></div>
+    </section>
+
+    <p class="sect-label">화제성 높은 순 (눌러서 상세)</p>
+    <div class="navlist">
+
+      <a class="nav-row" href="#drama-kimbujang">
+        <span class="nav-no">1</span>
+        <span class="nav-main">
+          <span class="nav-title"><span class="tag broadcast">방송</span>김부장<span class="nav-ep">SBS 금토 · 4화</span></span>
+          <span class="nav-head">4화 21.6%(순간 25.1%)·4회 만에 20% 돌파, 해외 20개국 1위 독주</span>
+        </span>
+        <span class="nav-right">
+          <span><span class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span> <span class="nav-grade g5">매우 높음</span></span>
+          <span class="nav-meta">전국 21.6% · 호평 78% <span class="up">▲</span></span>
+          <span class="nav-go">자세히 →</span>
+        </span>
+      </a>
+
+      <a class="nav-row" href="#drama-kangchairman">
+        <span class="nav-no">2</span>
+        <span class="nav-main">
+          <span class="nav-title"><span class="tag broadcast">방송</span>신입사원 강회장<span class="nav-ep">JTBC 토일 · 11화</span></span>
+          <span class="nav-head">11화 10.8%(4연속 10%+), "나잖아, 강용호" 반전 엔딩 화제</span>
+        </span>
+        <span class="nav-right">
+          <span><span class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span> <span class="nav-grade g4">높음</span></span>
+          <span class="nav-meta">전국 10.8% · 호평 70% <span class="up">▲</span></span>
+          <span class="nav-go">자세히 →</span>
+        </span>
+      </a>
+
+      <a class="nav-row" href="#drama-marriage">
+        <span class="nav-no">3</span>
+        <span class="nav-main">
+          <span class="nav-title"><span class="tag broadcast">방송</span>결혼의 완성<span class="nav-ep">KBS2 토일 · 1화 첫방</span><span class="event new">신작</span></span>
+          <span class="nav-head">첫방 4.4% 출발, 남궁민 7년만 KBS 복귀 범죄 스릴러</span>
+        </span>
+        <span class="nav-right">
+          <span><span class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span> <span class="nav-grade g3">보통</span></span>
+          <span class="nav-meta">전국 4.4% · 호평 55% <span class="flat">─</span></span>
+          <span class="nav-go">자세히 →</span>
+        </span>
+      </a>
+
+    </div>
+
+    <footer>
+      <b>다음 리포트</b> 2026년 7월 6일(월) 오전 8:00 — 7/6은 7월 첫 월요일이라 <b>데일리 + 위클리 + 월간 3종</b> 발행.<br>
+      <b>집계 제외</b> 킬러들의 쇼핑몰(디즈니+ → MBC 특선) 등 OTT 오리지널의 방송사 재방영<br>
+      데이터 출처: 스타뉴스·엑스포츠뉴스·이데일리·스포츠경향·톱스타뉴스 · 커뮤니티: 더쿠·디시
+    </footer>
+  </section>
+</div>

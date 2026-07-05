@@ -1,0 +1,441 @@
+<style>
+  :root{--ground:#EFEDE9;--surface:#FFFFFF;--ink:#1A1722;--muted:#716C7E;--hair:#E0DDD8;--accent:#6D30C4;--pos:#1B916A;--neg:#D23A57;--neu:#B0891F;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ground)}
+  .wrap{max-width:940px;margin:0 auto;padding:24px 20px 64px;color:var(--ink);font-family:Pretendard,"Apple SD Gothic Neo",system-ui,-apple-system,sans-serif;line-height:1.55}
+  .view{display:none}
+  #overview{display:block}
+  .detail:target{display:block}
+  .detail:target ~ #overview{display:none}
+  .board{display:inline-flex;gap:2px;background:var(--hair);padding:3px;border-radius:8px;margin-bottom:16px}
+  .board-tab{font-size:12.5px;font-weight:700;color:var(--muted);text-decoration:none;padding:6px 15px;border-radius:6px;transition:color .15s}
+  .board-tab.active{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.07)}
+  .board-tab:hover:not(.active){color:var(--ink)}
+  .masthead{border-bottom:2px solid var(--ink);padding-bottom:13px;margin-bottom:4px}
+  .brand{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .brand h1{font-family:Pretendard,"Apple SD Gothic Neo",system-ui,sans-serif;font-weight:800;font-size:27px;letter-spacing:-.01em;margin:0}
+  .brand h1 .k{color:var(--accent)}
+  .issue{font-size:12px;color:var(--muted);text-align:right}
+  .datenav{display:inline-flex;align-items:center;gap:6px;justify-content:flex-end}
+  .datebtn{display:inline-flex;height:22px;padding:0 8px;align-items:center;justify-content:center;border:1px solid var(--hair);border-radius:4px;color:var(--muted);text-decoration:none;font-size:11px;background:var(--surface)}
+  .datebtn:hover{border-color:var(--accent);color:var(--accent)}
+  .weeklabel{font-size:12px;font-weight:700;color:var(--ink);padding:0 4px}
+  .issue-sub{font-size:11.5px;color:var(--muted);margin-top:5px}
+  .kicker{text-transform:uppercase;letter-spacing:.18em;font-size:10.5px;font-weight:700;color:var(--accent);margin:0 0 6px}
+  .summary{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--hair);border:1px solid var(--hair);margin:18px 0 20px}
+  .stat{background:var(--ground);padding:11px 14px}
+  .stat .n{font-size:22px;font-weight:800;letter-spacing:-.02em}
+  .stat .n.small{font-size:15px}
+  .stat .l{font-size:11px;color:var(--muted);margin-top:2px}
+  .sect-label{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:700;margin:22px 0 11px}
+  .g5{color:var(--accent)}.g4{color:var(--accent)}.g3{color:var(--neu)}.g2{color:var(--muted)}.g1{color:var(--muted)}
+  .steps{display:inline-flex;gap:3px;vertical-align:middle}
+  .steps i{width:11px;height:6px;border-radius:2px;background:var(--hair);display:block}
+  .steps i.on{background:var(--accent)}
+  .up{color:var(--pos)}.down{color:var(--neg)}.flat{color:var(--muted)}
+  .rankchg{font-size:11px;font-weight:800}
+  .rankchg.new{color:var(--accent)}
+  .navlist{display:flex;flex-direction:column;gap:9px}
+  .nav-row{display:grid;grid-template-columns:22px 1fr auto;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--hair);border-radius:5px;padding:13px 16px;text-decoration:none;color:inherit;transition:border-color .15s,transform .15s}
+  a.nav-row:hover{border-color:var(--accent);transform:translateY(-1px)}
+  .nav-row.info{cursor:default}
+  .nav-no{font-family:Pretendard,sans-serif;font-size:16px;font-weight:800;color:var(--muted);text-align:center}
+  .nav-main{min-width:0}
+  .nav-title{font-size:15.5px;font-weight:800;letter-spacing:-.01em}
+  .nav-ep{font-size:11.5px;color:var(--muted);font-weight:600;margin-left:7px}
+  .nav-head{font-size:12.5px;color:var(--ink);margin-top:4px;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .nav-right{text-align:right;flex-shrink:0;display:flex;flex-direction:column;align-items:flex-end;gap:5px}
+  .nav-grade{font-size:13px;font-weight:800}
+  .nav-meta{font-size:11px;color:var(--muted)}
+  .nav-go{color:var(--accent);font-weight:700;font-size:12px;margin-top:2px}
+  .nav-go.mute{color:var(--muted)}
+  .tag{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.06em;padding:2px 6px;border-radius:3px;text-transform:uppercase;vertical-align:middle;margin-right:6px}
+  .tag.broadcast{background:var(--accent);color:#fff}
+  .tag.original{background:#12121a;color:#fff}
+  .event{display:inline-block;font-size:9.5px;font-weight:800;padding:2px 6px;border-radius:3px;vertical-align:middle;margin-left:4px}
+  .event.end{background:#FBE6EA;color:var(--neg)}
+  .event.new{background:#E9E1F7;color:var(--accent)}
+  .event.on{background:#E4F3EC;color:var(--pos)}
+  .back{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:700;color:var(--accent);text-decoration:none;margin-bottom:14px}
+  .back:hover{text-decoration:underline}
+  .card{background:var(--surface);border:1px solid var(--hair);border-radius:5px;overflow:hidden}
+  .card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;padding:16px 18px 12px}
+  .card h2{margin:0;font-size:21px;font-weight:800;letter-spacing:-.01em}
+  .meta{font-size:12px;color:var(--muted);margin-top:3px}
+  .buzz-block{text-align:right;flex-shrink:0}
+  .buzz-l{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+  .buzz-grade{font-size:21px;font-weight:800;line-height:1.1;margin-top:3px}
+  .buzz-steps{display:flex;gap:3px;justify-content:flex-end;margin-top:7px}
+  .buzz-steps i{width:15px;height:7px;border-radius:2px;background:var(--hair);display:block}
+  .buzz-steps i.on{background:var(--accent)}
+  .buzz-delta{font-size:12px;font-weight:700;margin-top:6px}
+  .wk-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--hair);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);margin-top:14px}
+  .wk-metrics .m{background:var(--surface);padding:11px 16px}
+  .wk-metrics .ml{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+  .wk-metrics .mv{font-size:15px;font-weight:800;margin-top:3px}
+  .wk-metrics .mv small{font-size:11px;font-weight:700;color:var(--muted)}
+  .chart{padding:14px 18px 4px}
+  .chart h3{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin:0 0 10px;font-weight:700}
+  .chart svg{width:100%;height:auto;display:block}
+  .chart .axis{stroke:var(--hair);stroke-width:1}
+  .chart .line{fill:none;stroke:var(--accent);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+  .chart .pt{fill:var(--accent)}
+  .chart .cval{font-size:9px;fill:var(--ink);font-weight:800}
+  .chart .clab{font-size:9px;fill:var(--muted)}
+  .chart .cap{font-size:11px;color:var(--muted);margin-top:2px}
+  .card-body{display:grid;grid-template-columns:1.1fr 1fr;gap:0;border-top:1px solid var(--hair)}
+  .col{padding:14px 18px}
+  .col+.col{border-left:1px solid var(--hair)}
+  .col h3{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin:0 0 10px;font-weight:700}
+  .issues{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+  .issues li{font-size:13.5px;padding-left:16px;position:relative}
+  .issues li::before{content:"";position:absolute;left:0;top:8px;width:5px;height:5px;border-radius:50%;background:var(--accent)}
+  .axis{font-size:11px;font-weight:800;color:var(--accent);margin-right:4px}
+  .clips{margin:11px 18px 0;font-size:12px;color:var(--muted)}
+  .clips a{color:var(--accent);text-decoration:none;font-weight:600}
+  .clips a:hover{text-decoration:underline}
+  .quote{border-left:3px solid var(--hair);padding:2px 0 2px 11px;margin:0 0 10px;font-size:13px}
+  .quote .who{font-size:11px;color:var(--muted);margin-top:3px}
+  .quote .who a{color:inherit;text-decoration:none}
+  .quote .who a:hover{text-decoration:underline;color:var(--accent)}
+  .pill{font-size:10px;font-weight:700;padding:1px 6px;border-radius:20px;margin-left:6px}
+  .pill.pos{background:#E4F3EC;color:var(--pos)}
+  .pill.neg{background:#FBE6EA;color:var(--neg)}
+  .samp{font-size:11px;color:var(--muted);margin-top:2px}
+  footer{margin-top:26px;padding-top:16px;border-top:1px solid var(--hair);font-size:12px;color:var(--muted)}
+  footer b{color:var(--ink)}
+  .sample-note{background:#EDE7F6;border:1px solid #D9CBEF;color:#5B2CA6;font-size:12px;padding:9px 13px;border-radius:4px;margin-bottom:18px}
+  @media(max-width:680px){.card-body{grid-template-columns:1fr}.col+.col{border-left:none;border-top:1px solid var(--hair)}.nav-head{white-space:normal}}
+</style>
+
+<div class="wrap">
+
+  <nav class="board">
+    <a class="board-tab" href="https://claude.ai/code/artifact/3ca82212-c264-4898-bb39-f793225f1f9b">데일리</a>
+    <a class="board-tab active" href="https://claude.ai/code/artifact/0b60b130-7c42-41b3-a9c7-6070167223f3">위클리</a>
+    <a class="board-tab" href="https://claude.ai/code/artifact/627850c8-7ba3-44d6-bbdc-b0f50fff455b">월간</a>
+  </nav>
+
+  <!-- ============ 상세 ============ -->
+
+  <!-- 참교육 -->
+  <section class="view detail" id="drama-chamgyoyuk">
+    <a class="back" href="#overview">← 전체 보기</a>
+    <div class="card">
+      <div class="card-top">
+        <div>
+          <span class="tag original">OTT</span><span class="event on">글로벌 1위</span>
+          <h2>참교육</h2>
+          <div class="meta">넷플릭스 오리지널 · 6/5 공개 (이월 히트) · 김무열·이성민·진기주·표지훈</div>
+        </div>
+        <div class="buzz-block">
+          <div class="buzz-l">주간 화제성</div>
+          <div class="buzz-grade g5">매우 높음</div>
+          <div class="buzz-steps"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
+          <div class="buzz-delta flat">─ 정상 유지</div>
+        </div>
+      </div>
+      <div class="wk-metrics">
+        <div class="m"><div class="ml">글로벌</div><div class="mv">비영어 1위 <small>· 3주 연속</small></div></div>
+        <div class="m"><div class="ml">호평%</div><div class="mv">70% <small class="flat">· 폭력미화 논란 병존</small></div></div>
+        <div class="m"><div class="ml">국가</div><div class="mv">45개국 1위 <small>· 93개국 TOP10</small></div></div>
+      </div>
+      <div class="chart">
+        <h3>넷플릭스 비영어 글로벌 순위 추이 <span class="clab" style="color:var(--accent);font-weight:800">▲ 1위=최상단</span></h3>
+        <svg viewBox="0 0 280 100" preserveAspectRatio="none" role="img">
+          <line class="axis" x1="10" y1="18" x2="270" y2="18"/>
+          <text class="clab" x="10" y="14">1위</text>
+          <polyline class="line" points="10,21 140,21 270,21"/>
+          <circle class="pt" cx="10" cy="21" r="3"/><circle class="pt" cx="140" cy="21" r="3"/><circle class="pt" cx="270" cy="21" r="3.4"/>
+          <text class="cval" x="10" y="34" text-anchor="start">1위</text><text class="cval" x="270" y="34" text-anchor="end">1위 유지</text>
+          <text class="clab" x="10" y="90" text-anchor="start">6/22</text><text class="clab" x="140" y="90" text-anchor="middle">6/25</text><text class="clab" x="270" y="90" text-anchor="end">6/28</text>
+        </svg>
+        <div class="cap">이번 주 내내 <b>넷플릭스 비영어 글로벌 1위</b>(누적 3주 연속) · 45개국 1위·93개국 TOP10</div>
+      </div>
+      <div class="card-body">
+        <div class="col">
+          <h3>이번 주 요약</h3>
+          <ul class="issues">
+            <li><span class="axis">[성과]</span>3주 연속 넷플릭스 비영어 글로벌 1위, 45개국 1위·93개국 TOP10 — 이번 주 최강</li>
+            <li><span class="axis">[화제 요인]</span>"교권보호국" 사이다 응징의 대리만족 — "도파민 그 자체" 반응 지속</li>
+            <li><span class="axis">[시청 반응]</span>교총·평론가 "폭력을 폭력으로" 미화 논란도 병존(호불호)</li>
+          </ul>
+          <div class="clips">🎬 화제 장면 · <a href="https://www.youtube.com/shorts/HVUoRFt2_Xs">김무열 촉법소년 응징 (쇼츠)</a> · <a href="https://www.youtube.com/shorts/40411DpZ0to">눈높이 사이다 참교육 (쇼츠)</a></div>
+        </div>
+        <div class="col">
+          <h3>대표 반응 <span class="flat" style="font-weight:700">· 커뮤니티</span></h3>
+          <blockquote class="quote">"사이다 통했다 — 27개국 1위·88개국 TOP10, 도파민 그 자체" <span class="pill pos">호평</span><div class="who"><a href="https://theqoo.net/square/4236772339">더쿠 →</a></div></blockquote>
+          <blockquote class="quote">"진기주 캐릭터 해외에서도 개좋아함" — 글로벌 화제 <span class="pill pos">호평</span><div class="who"><a href="https://theqoo.net/dyb/4236837506">더쿠 →</a></div></blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 김부장 -->
+  <section class="view detail" id="drama-kimbujang">
+    <a class="back" href="#overview">← 전체 보기</a>
+    <div class="card">
+      <div class="card-top">
+        <div>
+          <span class="tag broadcast">방송</span><span class="event new">신작</span>
+          <h2>김부장</h2>
+          <div class="meta">SBS 금토 · 이번 주 1~2화(6/26·27) · 소지섭 주연</div>
+        </div>
+        <div class="buzz-block">
+          <div class="buzz-l">주간 화제성</div>
+          <div class="buzz-grade g4">높음</div>
+          <div class="buzz-steps"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+          <div class="buzz-delta up">▲ 주말 급등</div>
+        </div>
+      </div>
+      <div class="wk-metrics">
+        <div class="m"><div class="ml">시청률</div><div class="mv">15.7% <small>· 1→2화 +6.2%p</small></div></div>
+        <div class="m"><div class="ml">호평%</div><div class="mv">62% <small class="up">▲ 2화 후 반등</small></div></div>
+        <div class="m"><div class="ml">화제성</div><div class="mv">신규 진입 <small>· 소지섭 복귀</small></div></div>
+      </div>
+      <div class="chart">
+        <h3>회차별 전국 시청률 (%)</h3>
+        <svg viewBox="0 0 280 100" preserveAspectRatio="none" role="img">
+          <line class="axis" x1="10" y1="75" x2="270" y2="75"/>
+          <polyline class="line" points="10,43.3 270,22.7"/>
+          <circle class="pt" cx="10" cy="43.3" r="3"/><circle class="pt" cx="270" cy="22.7" r="3.4"/>
+          <text class="cval" x="10" y="37">9.5</text><text class="cval" x="270" y="16" text-anchor="end">15.7</text>
+          <text class="clab" x="10" y="90">1화 6/26</text><text class="clab" x="270" y="90" text-anchor="end">2화 6/27</text>
+        </svg>
+        <div class="cap">2회 만에 전국 15.7%·순간 18.1% — 2021년 이후 최단기간 15% 돌파</div>
+      </div>
+      <div class="card-body">
+        <div class="col">
+          <h3>이번 주 요약</h3>
+          <ul class="issues">
+            <li><span class="axis">[성과]</span>첫방 9.5%→2화 15.7%(순간 18.1%) 급등, 동시간대 1위</li>
+            <li><span class="axis">[화제 요인]</span>소지섭 13년 만의 SBS 복귀·'아빠 유니버스' 액션이 주말 화제 견인</li>
+            <li><span class="axis">[시청 반응]</span>초반 "뻔하다·올드하다" 혹평은 2화 반전 이후 잦아드는 추세</li>
+          </ul>
+          <div class="clips">🎬 화제 장면 · <a href="https://www.youtube.com/shorts/Ngim4E57bJY">소지섭 맨몸 액션 (쇼츠)</a> · <a href="https://www.youtube.com/watch?v=9KFkdt14xJw">각성 사이다 액션 (클립)</a></div>
+        </div>
+        <div class="col">
+          <h3>대표 반응 <span class="flat" style="font-weight:700">· 커뮤니티</span></h3>
+          <blockquote class="quote">"2화 각성신 소리질렀다 이 맛에 보는 액션" <span class="pill pos">호평</span><div class="who"><a href="https://www.clien.net/service/board/park/19216912">클리앙 →</a></div></blockquote>
+          <blockquote class="quote">"1화는 뻔했는데 2화부터 확 산다" <span class="pill neg">혹평→반등</span><div class="who"><a href="https://www.threads.com/@shikshik_e/post/DaEah8BD6cb/">Threads →</a></div></blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 맨끝줄소년 -->
+  <section class="view detail" id="drama-maneutjul">
+    <a class="back" href="#overview">← 전체 보기</a>
+    <div class="card">
+      <div class="card-top">
+        <div>
+          <span class="tag original">OTT</span><span class="event new">신작</span>
+          <h2>맨 끝줄 소년</h2>
+          <div class="meta">넷플릭스 오리지널 · 6/26 공개 · 최민식·최현욱 주연</div>
+        </div>
+        <div class="buzz-block">
+          <div class="buzz-l">주간 화제성</div>
+          <div class="buzz-grade g4">높음</div>
+          <div class="buzz-steps"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+          <div class="buzz-delta up">▲ 공개 후 급상승</div>
+        </div>
+      </div>
+      <div class="wk-metrics">
+        <div class="m"><div class="ml">넷플릭스</div><div class="mv">비영어 글로벌 8위 <small>· 국내 2위</small></div></div>
+        <div class="m"><div class="ml">호평%</div><div class="mv">62% <small class="flat">호불호 공존</small></div></div>
+        <div class="m"><div class="ml">국가</div><div class="mv">41개국 <small>TOP10</small></div></div>
+      </div>
+      <div class="chart">
+        <h3>넷플릭스 비영어 글로벌 순위 추이 <span class="clab" style="color:var(--accent);font-weight:800">▲ 1위=최상단</span></h3>
+        <svg viewBox="0 0 280 100" preserveAspectRatio="none" role="img">
+          <line class="axis" x1="10" y1="18" x2="270" y2="18"/>
+          <text class="clab" x="10" y="14">1위</text>
+          <polyline class="line" points="10,72 140,66 270,60"/>
+          <circle class="pt" cx="10" cy="72" r="3"/><circle class="pt" cx="140" cy="66" r="3"/><circle class="pt" cx="270" cy="60" r="3.4"/>
+          <text class="cval" x="10" y="67" text-anchor="start">10위</text><text class="cval" x="140" y="61" text-anchor="middle">9위</text><text class="cval" x="270" y="55" text-anchor="end">8위</text>
+          <text class="clab" x="10" y="90">6/26 공개</text><text class="clab" x="140" y="90" text-anchor="middle">6/28</text><text class="clab" x="270" y="90" text-anchor="end">6/30</text>
+        </svg>
+        <div class="cap">공개 첫 주 비영어 글로벌 <b>8위</b> 진입 · 국내 2위 유지 · 41개국 TOP10</div>
+      </div>
+      <div class="card-body">
+        <div class="col">
+          <h3>이번 주 요약</h3>
+          <ul class="issues">
+            <li><span class="axis">[성과]</span>공개 첫 주 넷플릭스 비영어 글로벌 8위, 국내 2위·41개국 TOP10</li>
+            <li><span class="axis">[화제 요인]</span>최민식 넷플릭스 데뷔작 — 최현욱과의 심리게임 연기·절제된 영상미 호평</li>
+            <li><span class="axis">[시청 반응]</span>무거운 분위기·파격 소재로 호불호 — 커뮤니티서 열띤 토론</li>
+          </ul>
+          <div class="clips">🎬 화제 장면 · <a href="https://www.youtube.com/shorts/HBvslUKNuxw">교수님의 참교육 (쇼츠)</a> · <a href="https://www.youtube.com/shorts/xffaq5pRRbQ">충격 정체 반전 (쇼츠)</a></div>
+        </div>
+        <div class="col">
+          <h3>대표 반응 <span class="flat" style="font-weight:700">· 커뮤니티</span></h3>
+          <blockquote class="quote">"하루 만에 정주행, 몰입·반전 신선" <span class="pill pos">호평</span><div class="who"><a href="https://gall.dcinside.com/mgallery/board/view/?id=notesfromthelastrow&no=145">디시 맨끝줄소년 갤러리 →</a></div></blockquote>
+          <blockquote class="quote">"연기는 좋은데 개연성 약하고 찝찝" <span class="pill neg">혹평</span><div class="who"><a href="https://gall.dcinside.com/mgallery/board/view/?id=netflix&no=518964">디시 넷플릭스 갤러리 →</a></div></blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 오십프로 (종영 결산) -->
+  <section class="view detail" id="drama-ohsibpro">
+    <a class="back" href="#overview">← 전체 보기</a>
+    <div class="card">
+      <div class="card-top">
+        <div>
+          <span class="tag broadcast">방송</span><span class="event end">종영</span>
+          <h2>오십프로</h2>
+          <div class="meta">MBC 금토 · 이번 주 11~12화(피날레 6/27) · 신하균·오정세·허성태</div>
+        </div>
+        <div class="buzz-block">
+          <div class="buzz-l">주간 화제성</div>
+          <div class="buzz-grade g3">보통</div>
+          <div class="buzz-steps"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div>
+          <div class="buzz-delta up">▲ 피날레 소폭</div>
+        </div>
+      </div>
+      <div class="wk-metrics">
+        <div class="m"><div class="ml">최종 성적</div><div class="mv">최고 8.2% <small>· 최종 5.0%</small></div></div>
+        <div class="m"><div class="ml">호평%</div><div class="mv">70% <small class="up">▲ 유종의 미</small></div></div>
+        <div class="m"><div class="ml">완주</div><div class="mv">12부작 <small>· 5~6%대 유지</small></div></div>
+      </div>
+      <div class="chart">
+        <h3>전 회차 전국 시청률 (%) · 종영 결산</h3>
+        <svg viewBox="0 0 280 100" preserveAspectRatio="none" role="img">
+          <line class="axis" x1="10" y1="75" x2="270" y2="75"/>
+          <polyline class="line" points="10,42 33.6,48 57.3,33.75 80.9,36 104.5,39 128.2,39 151.8,35.25 175.5,38.25 199.1,33 222.7,39 246.4,30 270,37.5"/>
+          <circle class="pt" cx="10" cy="42" r="2.6"/><circle class="pt" cx="246.4" cy="30" r="3.2"/><circle class="pt" cx="270" cy="37.5" r="3.2"/>
+          <text class="cval" x="10" y="36">4.4</text><text class="cval" x="246.4" y="24" text-anchor="middle">6.0</text><text class="cval" x="270" y="49" text-anchor="end">5.0</text>
+          <text class="clab" x="10" y="90">1화</text><text class="clab" x="246.4" y="90" text-anchor="middle">11화</text><text class="clab" x="270" y="90" text-anchor="end">12화·完</text>
+        </svg>
+        <div class="cap">5~6%대 안정적 유지, 11화 자체최고 후 피날레 5.0% 마무리(순간 최고 8.2%)</div>
+      </div>
+      <div class="card-body">
+        <div class="col">
+          <h3>이번 주 요약 <span class="ep" style="color:var(--accent);font-weight:800">· 종영</span></h3>
+          <ul class="issues">
+            <li><span class="axis">[성과]</span>12부작 완주 — 자체 최고 순간 8.2%, 최종회 전국 5.0%</li>
+            <li><span class="axis">[화제 요인]</span>신하균·오정세·허성태 3인 공조 카타르시스가 후반 만족도 견인</li>
+            <li><span class="axis">[시청 반응]</span>대형 화제작은 아니나 "조용한 웰메이드"로 팬층 확보</li>
+          </ul>
+          <div class="clips">🎬 화제 장면 · <a href="https://www.youtube.com/shorts/sZnY-pqU6ts">신하균 본업 코미디 (쇼츠)</a></div>
+        </div>
+        <div class="col">
+          <h3>대표 반응 <span class="flat" style="font-weight:700">· 커뮤니티</span></h3>
+          <blockquote class="quote">"재미 100%, 세 배우 티키타카 꿀잼 종영 아쉽다" <span class="pill pos">호평</span><div class="who"><a href="https://theqoo.net/square/4222781366">더쿠 →</a></div></blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 허브 ============ -->
+  <section class="view" id="overview">
+    <header class="masthead">
+      <p class="kicker">Weekly Drama Buzz Report</p>
+      <div class="brand">
+        <h1>드라마 반응 <span class="k">위클리</span></h1>
+        <div class="issue">
+          <div class="datenav">
+            <a class="datebtn" href="weekly-2026-W25.html" title="지난 주">◀</a>
+            <span class="weeklabel">2026 · 6월 4주</span>
+            <a class="datebtn" href="weekly-2026-W27.html" title="다음 주">▶</a>
+          </div>
+          <div class="issue-sub">6/22(월)~6/28(일) 커버 · 6/29(월) 오전 발행 · 추적 6편</div>
+        </div>
+      </div>
+    </header>
+
+    <section class="summary">
+      <div class="stat"><div class="n">6</div><div class="l">이번 주 추적 작품</div></div>
+      <div class="stat"><div class="n small">신작 2 · 종영 1 · 방영중 3</div><div class="l">주요 이벤트</div></div>
+    </section>
+
+    <p class="sect-label">주간 화제성 랭킹 · 전주 대비 순위 변동 (눌러서 상세)</p>
+    <div class="navlist">
+
+      <a class="nav-row" href="#drama-chamgyoyuk">
+        <span class="nav-no">1</span>
+        <span class="nav-main">
+          <span class="nav-title"><span class="tag original">OTT</span>참교육<span class="nav-ep">넷플릭스 · 이월</span><span class="event on">글로벌 1위</span></span>
+          <span class="nav-head">넷플릭스 비영어 글로벌 1위 3주 연속 — 이번 주도 압도적 최강</span>
+        </span>
+        <span class="nav-right">
+          <span><span class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span> <span class="nav-grade g5">매우 높음</span></span>
+          <span class="nav-meta">순위 <span class="flat">─ 유지</span> · 호평 70%</span>
+          <span class="nav-go">자세히 →</span>
+        </span>
+      </a>
+
+      <a class="nav-row" href="#drama-kimbujang">
+        <span class="nav-no">2</span>
+        <span class="nav-main">
+          <span class="nav-title"><span class="tag broadcast">방송</span>김부장<span class="nav-ep">SBS 금토 · 1~2화</span><span class="event new">신작</span></span>
+          <span class="nav-head">첫방 9.5%→2화 15.7% 급등, 소지섭 복귀 주말 화제 견인</span>
+        </span>
+        <span class="nav-right">
+          <span><span class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span> <span class="nav-grade g4">높음</span></span>
+          <span class="nav-meta">순위 <span class="rankchg new">NEW</span> · 호평 62% <span class="up">▲</span></span>
+          <span class="nav-go">자세히 →</span>
+        </span>
+      </a>
+
+      <a class="nav-row" href="#drama-maneutjul">
+        <span class="nav-no">3</span>
+        <span class="nav-main">
+          <span class="nav-title"><span class="tag original">OTT</span>맨 끝줄 소년<span class="nav-ep">넷플릭스 · 6/26</span><span class="event new">신작</span></span>
+          <span class="nav-head">최민식 데뷔작, 공개 첫 주 비영어 글로벌 8위·국내 2위</span>
+        </span>
+        <span class="nav-right">
+          <span><span class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span> <span class="nav-grade g4">높음</span></span>
+          <span class="nav-meta">순위 <span class="rankchg new">NEW</span> · 호평 62%</span>
+          <span class="nav-go">자세히 →</span>
+        </span>
+      </a>
+
+      <div class="nav-row info">
+        <span class="nav-no">4</span>
+        <span class="nav-main">
+          <span class="nav-title"><span class="tag broadcast">방송</span>신입사원 강회장<span class="nav-ep">JTBC 토일 · 방영중</span><span class="event on">방영중</span></span>
+          <span class="nav-head">자체최고 11%대 유지, JTBC 토일 화제성 싹쓸이 — 이준영·손현주</span>
+        </span>
+        <span class="nav-right">
+          <span><span class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span> <span class="nav-grade g4">높음</span></span>
+          <span class="nav-meta">순위 <span class="up">▲2</span> · 호평 68%</span>
+          <span class="nav-go mute">─</span>
+        </span>
+      </div>
+
+      <div class="nav-row info">
+        <span class="nav-no">5</span>
+        <span class="nav-main">
+          <span class="nav-title"><span class="tag broadcast">방송</span>닥터 섬보이<span class="nav-ep">ENA 월화 · 방영중</span><span class="event on">방영중</span></span>
+          <span class="nav-head">ENA 역대 최고 출발(5회 연속 1위), 이재욱·신예은 의학물</span>
+        </span>
+        <span class="nav-right">
+          <span><span class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span> <span class="nav-grade g3">보통</span></span>
+          <span class="nav-meta">순위 <span class="up">▲1</span> · 호평 68%</span>
+          <span class="nav-go mute">─</span>
+        </span>
+      </div>
+
+      <a class="nav-row" href="#drama-ohsibpro">
+        <span class="nav-no">6</span>
+        <span class="nav-main">
+          <span class="nav-title"><span class="tag broadcast">방송</span>오십프로<span class="nav-ep">MBC 금토 · 11~12화</span><span class="event end">종영</span></span>
+          <span class="nav-head">피날레 최고 8.2%·최종 5.0%, 3인 공조로 유종의 미</span>
+        </span>
+        <span class="nav-right">
+          <span><span class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span> <span class="nav-grade g3">보통</span></span>
+          <span class="nav-meta">순위 <span class="flat">─</span> · 호평 70%</span>
+          <span class="nav-go">자세히 →</span>
+        </span>
+      </a>
+
+    </div>
+
+    <footer>
+      <b>다음 리포트</b> 일간 매일 오전 · 주간 7/6(월)(6/29~7/5 커버) · <b>종영</b> 오십프로(6/27) → 다음 주부터 자동 제외.<br>
+      <b>집계 제외</b> 파친코(애플TV+ 오리지널의 tvN 재방)·킬러들의 쇼핑몰(디즈니+ → MBC 특선) 등 OTT 오리지널의 방송사 재방영은 제외<br>
+      대상 기준: 그 주 방영된 전 슬롯(월화·금토·토일) + 그 주 론칭/이월 OTT 히트작 합집합 · 수집 기사: 구글 뉴스 RSS · 커뮤니티: 더쿠·디시 등
+    </footer>
+  </section>
+</div>

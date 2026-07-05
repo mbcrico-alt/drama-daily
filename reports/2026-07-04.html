@@ -1,0 +1,151 @@
+<style>
+  :root{
+    --ground:#EFEDE9;--surface:#FFFFFF;--ink:#1A1722;--muted:#716C7E;--hair:#E0DDD8;
+    --accent:#6D30C4;--pos:#1B916A;--neg:#D23A57;--neu:#B0891F;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ground)}
+  .wrap{max-width:960px;margin:0 auto;padding:28px 20px 64px;color:var(--ink);
+    font-family:Pretendard,"Apple SD Gothic Neo",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.55}
+  .masthead{border-bottom:2px solid var(--ink);padding-bottom:14px;margin-bottom:4px}
+  .brand{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .brand h1{font-family:Pretendard,"Apple SD Gothic Neo",system-ui,sans-serif;font-weight:800;font-size:30px;letter-spacing:-.01em;margin:0}
+  .brand h1 .k{font-family:Pretendard,"Apple SD Gothic Neo",system-ui,sans-serif;font-weight:800}
+  .issue{font-size:12.5px;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
+  .kicker{text-transform:uppercase;letter-spacing:.18em;font-size:10.5px;font-weight:700;color:var(--accent);margin:0 0 6px}
+  .summary{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--hair);border:1px solid var(--hair);margin:18px 0 22px}
+  .stat{background:var(--ground);padding:12px 14px}
+  .stat .n{font-size:24px;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+  .stat .n.small{font-size:17px}
+  .stat .l{font-size:11.5px;color:var(--muted);margin-top:2px}
+  .g5{color:var(--accent)}.g4{color:var(--accent)}.g3{color:var(--neu)}.g2{color:var(--muted)}.g1{color:var(--muted)}
+  .cards{display:flex;flex-direction:column;gap:16px}
+  .card{background:var(--surface);border:1px solid var(--hair);border-radius:4px;overflow:hidden}
+  .card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;padding:16px 18px 12px}
+  .title-block{min-width:0}
+  .tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.08em;padding:2px 7px;border-radius:3px;margin-bottom:7px;text-transform:uppercase}
+  .tag.mine{background:var(--accent);color:#fff}
+  .tag.rival{background:#EDEAF0;color:var(--muted)}
+  .card h2{margin:0;font-size:19px;font-weight:800;letter-spacing:-.01em}
+  .meta{font-size:12px;color:var(--muted);margin-top:3px}
+  .dday{font-weight:700;color:var(--ink)}
+  .buzz-block{text-align:right;flex-shrink:0}
+  .buzz-l{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+  .buzz-grade{font-size:22px;font-weight:800;line-height:1.1;letter-spacing:-.01em;margin-top:3px}
+  .buzz-steps{display:flex;gap:3px;justify-content:flex-end;margin-top:7px}
+  .buzz-steps i{width:16px;height:7px;border-radius:2px;background:var(--hair);display:block}
+  .buzz-steps i.on{background:var(--accent)}
+  .buzz-delta{font-size:12px;font-weight:700;margin-top:6px}
+  .up{color:var(--pos)}.down{color:var(--neg)}.flat{color:var(--muted)}
+  .senti{display:flex;height:8px;border-radius:4px;overflow:hidden;margin:0 18px}
+  .senti span{display:block}
+  .senti .p{background:var(--pos)}.senti .n{background:var(--neg)}.senti .u{background:var(--neu)}
+  .senti-legend{display:flex;gap:14px;font-size:11px;color:var(--muted);margin:7px 18px 0;font-variant-numeric:tabular-nums}
+  .dot{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:4px;vertical-align:middle}
+  .card-body{display:grid;grid-template-columns:1.1fr 1fr;gap:0;border-top:1px solid var(--hair);margin-top:14px}
+  .col{padding:14px 18px}
+  .col+.col{border-left:1px solid var(--hair)}
+  .col h3{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin:0 0 10px;font-weight:700}
+  .col h3 .ep{color:var(--accent);font-weight:800}
+  .issues{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+  .issues li{font-size:13.5px;padding-left:16px;position:relative}
+  .issues li::before{content:"";position:absolute;left:0;top:8px;width:5px;height:5px;border-radius:50%;background:var(--accent)}
+  .articles{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px}
+  .articles a{color:var(--ink);text-decoration:none;font-size:13px;display:block}
+  .articles a:hover .h{text-decoration:underline;color:var(--accent)}
+  .articles .src{font-size:11px;color:var(--muted);display:block;margin-top:1px}
+  .articles .src b{color:var(--accent);font-weight:700}
+  .quote{border-left:3px solid var(--hair);padding:2px 0 2px 11px;margin:0 0 10px;font-size:13px}
+  .quote .who{font-size:11px;color:var(--muted);margin-top:3px}
+  .quote .who a{color:inherit;text-decoration:none}
+  .quote .who a:hover{text-decoration:underline;color:var(--accent)}
+  .pill{font-size:10px;font-weight:700;padding:1px 6px;border-radius:20px;margin-left:6px}
+  .pill.pos{background:#E4F3EC;color:var(--pos)}
+  .pill.neg{background:#FBE6EA;color:var(--neg)}
+  .window{font-size:11px;color:var(--muted);margin:0 18px 12px}
+  footer{margin-top:30px;padding-top:16px;border-top:1px solid var(--hair);font-size:12px;color:var(--muted)}
+  footer b{color:var(--ink)}
+  @media(max-width:680px){
+    .summary{grid-template-columns:repeat(2,1fr)}
+    .card-body{grid-template-columns:1fr}
+    .col+.col{border-left:none;border-top:1px solid var(--hair)}
+    .brand h1{font-size:24px}
+  }
+</style>
+
+<div class="wrap">
+  <header class="masthead">
+    <p class="kicker">Daily Drama Buzz Report</p>
+    <div class="brand">
+      <h1>드라마 반응 <span class="k">데일리</span></h1>
+      <div class="issue">2026년 7월 4일 (토) · 오전 8:00 발송<br>No. 001 · 모니터링 1편</div>
+    </div>
+  </header>
+
+  <section class="summary">
+    <div class="stat"><div class="n">1</div><div class="l">모니터링 작품</div></div>
+    <div class="stat"><div class="n">8</div><div class="l">신규 기사 (24h)</div></div>
+    <div class="stat"><div class="n small">매우 활발</div><div class="l">SNS·커뮤니티 언급</div></div>
+    <div class="stat"><div class="n small">호평 우세 ▲</div><div class="l">종합 여론</div></div>
+  </section>
+
+  <div class="cards">
+
+    <article class="card">
+      <div class="card-top">
+        <div class="title-block">
+          <span class="tag mine">내 작품</span>
+          <h2>김부장</h2>
+          <div class="meta">SBS 금토 · 3화 방송(7/3) · 소지섭 주연 · <span class="dday">모니터링 D-58</span> (8/31까지)</div>
+        </div>
+        <div class="buzz-block">
+          <div class="buzz-l">화제성</div>
+          <div class="buzz-grade g5">매우 높음</div>
+          <div class="buzz-steps"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
+          <div class="buzz-delta up">▲ 상승세</div>
+        </div>
+      </div>
+      <div class="senti"><span class="p" style="width:76%"></span><span class="u" style="width:15%"></span><span class="n" style="width:9%"></span></div>
+      <div class="senti-legend">
+        <span><span class="dot" style="background:var(--pos)"></span>호평 76%</span>
+        <span><span class="dot" style="background:var(--neu)"></span>중립 15%</span>
+        <span><span class="dot" style="background:var(--neg)"></span>혹평 9%</span>
+      </div>
+      <div class="card-body">
+        <div class="col">
+          <h3>오늘의 이슈 <span class="ep">· 3화 (7/3 금 방송)</span></h3>
+          <ul class="issues">
+            <li>3화 전국 18.8%·수도권 19.6%, 순간 최고 23% — <b>올해 방송 미니시리즈 시청률 1위</b> 등극 (2049 최고 7.5%)</li>
+            <li>소지섭·최대훈(성한수) '벙커' 공조로 특수임무국 요원 제압 — "공중파에서 이런 액션을, 역시 액션 맛집" 호평</li>
+            <li>엔딩서 김성규 "가짜 66" 위기 + 김부장이 딸 민지의 외로움을 뒤늦게 깨닫는 감정선이 화제</li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>주요 기사 <span class="ep">· 최신순</span></h3>
+          <ul class="articles">
+            <li><a href="https://news.nate.com/view/20260704n05125"><span class="h">소지섭 '김부장' 3회 만에 18.8%…올해 미니시리즈 최고 시청률</span><span class="src"><b>스타뉴스(네이트)</b> · 오늘 오전</span></a></li>
+            <li><a href="https://www.sportsworldi.com/newsView/20260704501962"><span class="h">[TV핫스팟] '김부장' 소지섭·최대훈, 압도적 공조 액션…최고 시청률 23%</span><span class="src"><b>스포츠월드</b> · 오늘 오전</span></a></li>
+            <li><a href="https://www.justeconomix.com/ko-kr/articles/151961"><span class="h">소지섭 '김부장' 시청률 18% 돌파…5년 만의 초고속 흥행 신기록</span><span class="src"><b>저스트이코노믹스</b> · 오늘</span></a></li>
+            <li><a href="https://www.frame-less.co.kr/news/articleView.html?idxno=3788"><span class="h">'김부장' 소지섭, 딸의 외로움 뒤늦게 알았다…김성규 "가짜 66" 위기 엔딩</span><span class="src"><b>프레임리스</b> · 어젯밤 (3화 종합)</span></a></li>
+            <li><a href="https://www.segye.com/newsView/20260701505132"><span class="h">"역시 액션 맛집 소지섭"…'김부장' 3화 기대감 폭발</span><span class="src"><b>세계일보</b> · 3일 전 (방송 전)</span></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="card-body" style="border-top:1px solid var(--hair)">
+        <div class="col" style="grid-column:1/-1">
+          <h3>SNS·커뮤니티 반응 <span class="ep">· 3화 방송 직후~오늘 08:00</span></h3>
+          <div class="window">※ 7/3(금) 3화 방송 직후부터 오늘 아침까지의 반응만 수집 · 무료 검색 범위라 표본은 제한적이며, 3화 직후엔 호평이 지배적(초반의 "전개가 뻔하다"는 혹평은 잦아드는 추세)</div>
+          <blockquote class="quote">"김부장이 재밌는 드라마였네" — 큰 기대 안 했다가 액션·전개에 빠졌다는 반응 <span class="pill pos">호평</span><div class="who"><a href="https://m.dcinside.com/board/worthless/20833">디시인사이드 갤러리 · 원문 보기 →</a></div></blockquote>
+          <blockquote class="quote">3화 방영 직후 김부장 갤러리 실시간 반응 활발 — 공조 액션·성한수(최대훈) 캐릭터 호평 다수 <span class="pill pos">호평</span><div class="who"><a href="https://m.dcinside.com/board/kbj">디시 김부장 갤러리 · 원문 보기 →</a></div></blockquote>
+          <blockquote class="quote">"공중파에서 이런 액션을 볼 줄이야", "역시 액션 맛집 소지섭" — 클립·예고 영상 댓글 호평 <span class="pill pos">호평</span><div class="who"><a href="https://v.daum.net/v/20260701161551761">유튜브/기사 댓글 · 원문 보기 →</a></div></blockquote>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <footer>
+    <b>다음 리포트</b> 2026년 7월 5일(일) 오전 8:00 (오늘밤 4화 방송분 반영) · <b>모니터링 종료 예정</b> 임박 작품 없음 (김부장 8/31까지).<br>
+    작품 추가·기간 변경은 <b>dramas.json</b> 에서. · 데이터 출처: 스타뉴스·스포츠월드·저스트이코노믹스·프레임리스·세계일보·디시인사이드 등
+  </footer>
+</div>
