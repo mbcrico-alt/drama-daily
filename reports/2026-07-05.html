@@ -18,10 +18,26 @@
 <style>
   .card-hero{width:100%;aspect-ratio:16/9;overflow:hidden;background:#e6e1ea;border-radius:5px 5px 0 0}
   .card-hero img{width:100%;height:100%;object-fit:cover;object-position:center 22%;display:block}
-  .nav-row{grid-template-columns:22px 54px 1fr auto !important}
-  .nav-thumb{width:54px;height:54px;border-radius:6px;overflow:hidden;background:#e6e1ea;align-self:center}
+  /* 허브 목록 카드 재설계: 요약 문구는 아래 행 전체폭으로 줄바꿈 */
+  .nav-row{grid-template-columns:20px 60px 1fr auto !important;
+    grid-template-areas:"rank thumb title grade" "rank thumb head head" "rank thumb meta go" !important;
+    gap:4px 13px !important; align-items:center !important; padding:14px 16px !important}
+  .nav-rank{grid-area:rank;align-self:center;font-size:15px;font-weight:800;color:var(--muted);text-align:center}
+  .nav-thumb{grid-area:thumb;align-self:center;width:60px;height:60px;border-radius:8px;overflow:hidden;background:#e6e1ea}
   .nav-thumb img{width:100%;height:100%;object-fit:cover;object-position:center 22%;display:block}
-  @media(max-width:680px){.nav-row{grid-template-columns:20px 46px 1fr auto !important}.nav-thumb{width:46px;height:46px}}
+  .nav-title{grid-area:title;align-self:end}
+  .nav-grade-wrap{grid-area:grade;align-self:end;display:flex;align-items:center;justify-content:flex-end;gap:6px;white-space:nowrap}
+  .nav-head{grid-area:head;align-self:center;white-space:normal !important;overflow:visible !important;text-overflow:clip !important;font-size:13px;line-height:1.5;color:var(--ink);margin:2px 0 !important}
+  .nav-meta{grid-area:meta;align-self:start;font-size:11.5px;color:var(--muted)}
+  .nav-go{grid-area:go;align-self:start;text-align:right;margin-top:0 !important}
+  @media(max-width:680px){
+    .nav-row{grid-template-columns:18px 52px 1fr auto !important;
+      grid-template-areas:"rank thumb title title" "rank thumb grade grade" "rank thumb head head" "rank thumb meta go" !important;
+      gap:3px 10px !important;padding:12px !important}
+    .nav-thumb{width:52px;height:52px;align-self:start}
+    .nav-title{align-self:end}
+    .nav-grade-wrap{justify-content:flex-start;align-self:center}
+  }
 </style>
 </head>
 <body>
@@ -144,13 +160,13 @@
         <div>
           <span class="tag broadcast">방송</span>
           <h2>김부장</h2>
-          <div class="meta">SBS 금토 · 7/4(토) 방송 · 소지섭 주연</div>
+          <div class="meta">SBS 금토 · 4화 방송(7/4 토) · 소지섭 주연</div>
         </div>
         <div class="buzz-block">
           <div class="buzz-l">화제성</div>
           <div class="buzz-grade g5">매우 높음</div>
           <div class="buzz-steps"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
-          <div class="buzz-delta up">▲ 자체최고 (전회 18.8%→21.6%)</div>
+          <div class="buzz-delta up">▲ 자체최고 (3화 18.8%→4화 21.6%)</div>
         </div>
       </div>
       <div class="senti"><span class="p" style="width:78%"></span><span class="u" style="width:14%"></span><span class="n" style="width:8%"></span></div>
@@ -163,9 +179,9 @@
       </div>
       <div class="card-body">
         <div class="col">
-          <h3>오늘의 이슈 <span class="ep">· 7/4(토) 방송</span></h3>
+          <h3>오늘의 이슈 <span class="ep">· 4화 (7/4 토 방송)</span></h3>
           <ul class="issues">
-            <li><span class="axis">[성과]</span>전국 21.6%·수도권 22.7%·순간 25.1% — <b>4회 만에 20% 돌파</b>('눈물의 여왕'보다 빠름), SBS 금토 역대 3위 + 넷플릭스 해외 20개국 1위</li>
+            <li><span class="axis">[성과]</span>4화 전국 21.6%·수도권 22.7%·순간 25.1% — <b>4회 만에 20% 돌파</b>('눈물의 여왕'보다 빠름), SBS 금토 역대 3위 + 넷플릭스 해외 20개국 1위</li>
             <li><span class="axis">[화제 요인]</span>윤경호 합류 "다 죽었어"로 3인방 완성 — 소지섭 '연기대상 예약' 소리까지 나오는 독주 조짐</li>
             <li><span class="axis">[시청 반응]</span>액션·사이다에 호평 압도, 동시간대 신작 '결혼의 완성'(4.4%)을 크게 따돌린 독주</li>
           </ul>
@@ -184,7 +200,7 @@
       </div>
       <div class="card-body" style="border-top:1px solid var(--hair)">
         <div class="col" style="grid-column:1/-1">
-          <h3>SNS·커뮤니티 반응 <span class="ep">· 방송 직후~오늘 08:00</span></h3>
+          <h3>SNS·커뮤니티 반응 <span class="ep">· 4화 방송 직후~오늘 08:00</span></h3>
           <blockquote class="quote">"25% 실화? 소지섭 액션에 극장 온 줄, 윤경호 합류신 소름" <span class="pill pos">호평</span><div class="who"><a href="https://theqoo.net/square/4222781366">더쿠 →</a></div></blockquote>
           <blockquote class="quote">"이젠 20% 넘네…경쟁작들 다 눌렀다" <span class="pill pos">호평</span><div class="who"><a href="https://gall.dcinside.com/board/kbj">디시 김부장 갤러리 →</a></div></blockquote>
         </div>
@@ -201,7 +217,7 @@
         <div>
           <span class="tag broadcast">방송</span>
           <h2>신입사원 강회장</h2>
-          <div class="meta">JTBC 토일 · 7/4(토) 방송(종영 임박) · 이준영·손현주·이주명</div>
+          <div class="meta">JTBC 토일 · 11화 방송(7/4 토, 종영 임박) · 이준영·손현주·이주명</div>
         </div>
         <div class="buzz-block">
           <div class="buzz-l">화제성</div>
@@ -220,9 +236,9 @@
       </div>
       <div class="card-body">
         <div class="col">
-          <h3>오늘의 이슈 <span class="ep">· 7/4(토) 방송</span></h3>
+          <h3>오늘의 이슈 <span class="ep">· 11화 (7/4 토 방송)</span></h3>
           <ul class="issues">
-            <li><span class="axis">[성과]</span>전국 10.8% — <b>4회 연속 10% 돌파</b>, 종영(7/5) 앞두고 자체 상승세</li>
+            <li><span class="axis">[성과]</span>11화 전국 10.8% — <b>4회 연속 10% 돌파</b>, 종영(7/5) 앞두고 자체 상승세</li>
             <li><span class="axis">[화제 요인]</span>"왜 못 알아봐? 나잖아, 강용호" — 손현주 영혼 정체 공개 반전 엔딩에 안방극장 얼어붙음</li>
             <li><span class="axis">[시청 반응]</span>막판 반전·강용호 각성에 호평, JTBC 토일 화제성 견인하며 유종의 미 기대</li>
           </ul>
@@ -237,7 +253,7 @@
       </div>
       <div class="card-body" style="border-top:1px solid var(--hair)">
         <div class="col" style="grid-column:1/-1">
-          <h3>SNS·커뮤니티 반응 <span class="ep">· 방송 직후~오늘 08:00</span></h3>
+          <h3>SNS·커뮤니티 반응 <span class="ep">· 11화 방송 직후~오늘 08:00</span></h3>
           <div class="window">※ "나잖아, 강용호" 반전 엔딩에 실시간 화제 — 커뮤니티 개별 표본은 제한적(참고)</div>
           <div class="clips">🎬 화제 장면 · <a href="https://www.youtube.com/watch?v=SIi43nVHJWk">손현주 몸에 살아있는 강회장, 귀환 반전 (JTBC 클립)</a></div>
         </div>
@@ -254,7 +270,7 @@
         <div>
           <span class="tag broadcast">방송</span><span class="event new">신작</span>
           <h2>결혼의 완성</h2>
-          <div class="meta">KBS2 토일(디즈니+ 동시공개) · 7/4(토) 첫방송 · 남궁민·이설·김대명 · 범죄 스릴러</div>
+          <div class="meta">KBS2 토일(디즈니+ 동시공개) · 1화 첫방송(7/4 토) · 남궁민·이설·김대명 · 범죄 스릴러</div>
         </div>
         <div class="buzz-block">
           <div class="buzz-l">화제성</div>
@@ -273,11 +289,11 @@
       </div>
       <div class="card-body">
         <div class="col">
-          <h3>오늘의 이슈 <span class="ep">· 7/4(토) 첫 방송</span></h3>
+          <h3>오늘의 이슈 <span class="ep">· 1화 (7/4 토 첫 방송)</span></h3>
           <ul class="issues">
             <li><span class="axis">[성과]</span>첫방 전국 4.4% 출발 — 김부장(21.6%)·강회장(10.8%) 강세 속 다소 낮은 시작</li>
             <li><span class="axis">[화제 요인]</span>남궁민 7년 만의 KBS 복귀작 — 이혼 직전 납치된 아내를 구하는 신경외과의 강태주 범죄 스릴러</li>
-            <li><span class="axis">[시청 반응]</span>"남궁민이라 기대" vs "첫방 화력 약하다" 관망세 — 다음 방송 이탈 여부가 관건</li>
+            <li><span class="axis">[시청 반응]</span>"남궁민이라 기대" vs "첫방 화력 약하다" 관망세 — 2화 이탈 여부가 관건</li>
           </ul>
         </div>
         <div class="col">
@@ -291,7 +307,7 @@
       </div>
       <div class="card-body" style="border-top:1px solid var(--hair)">
         <div class="col" style="grid-column:1/-1">
-          <h3>SNS·커뮤니티 반응 <span class="ep">· 방송 직후~오늘 08:00</span></h3>
+          <h3>SNS·커뮤니티 반응 <span class="ep">· 1화 방송 직후~오늘 08:00</span></h3>
           <div class="window">※ 첫방송 직후라 여론 형성 초기 — 커뮤니티 표본 부족(참고). 남궁민 연기 호평 vs 초반 몰입도 지적 혼재</div>
         </div>
       </div>
@@ -324,45 +340,33 @@
     <div class="navlist">
 
       <a class="nav-row" href="#drama-kimbujang">
-        <span class="nav-no">1</span>
+        <span class="nav-rank">1</span>
         <span class="nav-thumb"><img src="img/kimbujang.jpg" alt="" loading="lazy"></span>
-        <span class="nav-main">
-          <span class="nav-title"><span class="tag broadcast">방송</span>김부장<span class="nav-ep">SBS 금토</span></span>
-          <span class="nav-head">21.6%(순간 25.1%)·4회 만에 20% 돌파, 해외 20개국 1위 독주</span>
-        </span>
-        <span class="nav-right">
-          <span><span class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span> <span class="nav-grade g5">매우 높음</span></span>
-          <span class="nav-meta">전국 21.6% · 호평 78% <span class="up">▲</span></span>
-          <span class="nav-go">자세히 →</span>
-        </span>
+        <span class="nav-title"><span class="tag broadcast">방송</span>김부장<span class="nav-ep">SBS 금토 · 4화</span></span>
+        <span class="nav-grade-wrap"><span class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span> <span class="nav-grade g5">매우 높음</span></span>
+        <span class="nav-head">4화 21.6%(순간 25.1%)·4회 만에 20% 돌파, 해외 20개국 1위 독주</span>
+        <span class="nav-meta">전국 21.6% · 호평 78% <span class="up">▲</span></span>
+        <span class="nav-go">자세히 →</span>
       </a>
 
       <a class="nav-row" href="#drama-kangchairman">
-        <span class="nav-no">2</span>
+        <span class="nav-rank">2</span>
         <span class="nav-thumb"><img src="img/kangchairman.jpg" alt="" loading="lazy"></span>
-        <span class="nav-main">
-          <span class="nav-title"><span class="tag broadcast">방송</span>신입사원 강회장<span class="nav-ep">JTBC 토일</span></span>
-          <span class="nav-head">10.8%(4연속 10%+), "나잖아, 강용호" 반전 엔딩 화제</span>
-        </span>
-        <span class="nav-right">
-          <span><span class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span> <span class="nav-grade g4">높음</span></span>
-          <span class="nav-meta">전국 10.8% · 호평 70% <span class="up">▲</span></span>
-          <span class="nav-go">자세히 →</span>
-        </span>
+        <span class="nav-title"><span class="tag broadcast">방송</span>신입사원 강회장<span class="nav-ep">JTBC 토일 · 11화</span></span>
+        <span class="nav-grade-wrap"><span class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span> <span class="nav-grade g4">높음</span></span>
+        <span class="nav-head">11화 10.8%(4연속 10%+), "나잖아, 강용호" 반전 엔딩 화제</span>
+        <span class="nav-meta">전국 10.8% · 호평 70% <span class="up">▲</span></span>
+        <span class="nav-go">자세히 →</span>
       </a>
 
       <a class="nav-row" href="#drama-marriage">
-        <span class="nav-no">3</span>
+        <span class="nav-rank">3</span>
         <span class="nav-thumb"><img src="img/marriage.jpg" alt="" loading="lazy"></span>
-        <span class="nav-main">
-          <span class="nav-title"><span class="tag broadcast">방송</span>결혼의 완성<span class="nav-ep">KBS2 토일 · 첫방</span><span class="event new">신작</span></span>
-          <span class="nav-head">첫방 4.4% 출발, 남궁민 7년만 KBS 복귀 범죄 스릴러</span>
-        </span>
-        <span class="nav-right">
-          <span><span class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span> <span class="nav-grade g3">보통</span></span>
-          <span class="nav-meta">전국 4.4% · 호평 55% <span class="flat">─</span></span>
-          <span class="nav-go">자세히 →</span>
-        </span>
+        <span class="nav-title"><span class="tag broadcast">방송</span>결혼의 완성<span class="nav-ep">KBS2 토일 · 1화 첫방</span><span class="event new">신작</span></span>
+        <span class="nav-grade-wrap"><span class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span> <span class="nav-grade g3">보통</span></span>
+        <span class="nav-head">첫방 4.4% 출발, 남궁민 7년만 KBS 복귀 범죄 스릴러</span>
+        <span class="nav-meta">전국 4.4% · 호평 55% <span class="flat">─</span></span>
+        <span class="nav-go">자세히 →</span>
       </a>
 
     </div>

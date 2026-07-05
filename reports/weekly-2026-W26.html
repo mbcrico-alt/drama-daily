@@ -18,10 +18,26 @@
 <style>
   .card-hero{width:100%;aspect-ratio:16/9;overflow:hidden;background:#e6e1ea;border-radius:5px 5px 0 0}
   .card-hero img{width:100%;height:100%;object-fit:cover;object-position:center 22%;display:block}
-  .nav-row{grid-template-columns:22px 54px 1fr auto !important}
-  .nav-thumb{width:54px;height:54px;border-radius:6px;overflow:hidden;background:#e6e1ea;align-self:center}
+  /* 허브 목록 카드 재설계: 요약 문구는 아래 행 전체폭으로 줄바꿈 */
+  .nav-row{grid-template-columns:20px 60px 1fr auto !important;
+    grid-template-areas:"rank thumb title grade" "rank thumb head head" "rank thumb meta go" !important;
+    gap:4px 13px !important; align-items:center !important; padding:14px 16px !important}
+  .nav-rank{grid-area:rank;align-self:center;font-size:15px;font-weight:800;color:var(--muted);text-align:center}
+  .nav-thumb{grid-area:thumb;align-self:center;width:60px;height:60px;border-radius:8px;overflow:hidden;background:#e6e1ea}
   .nav-thumb img{width:100%;height:100%;object-fit:cover;object-position:center 22%;display:block}
-  @media(max-width:680px){.nav-row{grid-template-columns:20px 46px 1fr auto !important}.nav-thumb{width:46px;height:46px}}
+  .nav-title{grid-area:title;align-self:end}
+  .nav-grade-wrap{grid-area:grade;align-self:end;display:flex;align-items:center;justify-content:flex-end;gap:6px;white-space:nowrap}
+  .nav-head{grid-area:head;align-self:center;white-space:normal !important;overflow:visible !important;text-overflow:clip !important;font-size:13px;line-height:1.5;color:var(--ink);margin:2px 0 !important}
+  .nav-meta{grid-area:meta;align-self:start;font-size:11.5px;color:var(--muted)}
+  .nav-go{grid-area:go;align-self:start;text-align:right;margin-top:0 !important}
+  @media(max-width:680px){
+    .nav-row{grid-template-columns:18px 52px 1fr auto !important;
+      grid-template-areas:"rank thumb title title" "rank thumb grade grade" "rank thumb head head" "rank thumb meta go" !important;
+      gap:3px 10px !important;padding:12px !important}
+    .nav-thumb{width:52px;height:52px;align-self:start}
+    .nav-title{align-self:end}
+    .nav-grade-wrap{justify-content:flex-start;align-self:center}
+  }
 </style>
 </head>
 <body>
@@ -208,7 +224,7 @@
         <div>
           <span class="tag broadcast">방송</span><span class="event new">신작</span>
           <h2>김부장</h2>
-          <div class="meta">SBS 금토 · 이번 주 방영(6/26·27) · 소지섭 주연</div>
+          <div class="meta">SBS 금토 · 이번 주 1~2화(6/26·27) · 소지섭 주연</div>
         </div>
         <div class="buzz-block">
           <div class="buzz-l">주간 화제성</div>
@@ -218,8 +234,8 @@
         </div>
       </div>
       <div class="wk-metrics">
-        <div class="m"><div class="ml">시청률</div><div class="mv">15.7% <small>· 전회 +6.2%p</small></div></div>
-        <div class="m"><div class="ml">호평%</div><div class="mv">62% <small class="up">▲ 후반 반등</small></div></div>
+        <div class="m"><div class="ml">시청률</div><div class="mv">15.7% <small>· 1→2화 +6.2%p</small></div></div>
+        <div class="m"><div class="ml">호평%</div><div class="mv">62% <small class="up">▲ 2화 후 반등</small></div></div>
         <div class="m"><div class="ml">화제성</div><div class="mv">신규 진입 <small>· 소지섭 복귀</small></div></div>
       </div>
       <div class="chart">
@@ -229,7 +245,7 @@
           <polyline class="line" points="10,43.3 270,22.7"/>
           <circle class="pt" cx="10" cy="43.3" r="3"/><circle class="pt" cx="270" cy="22.7" r="3.4"/>
           <text class="cval" x="10" y="37">9.5</text><text class="cval" x="270" y="16" text-anchor="end">15.7</text>
-          <text class="clab" x="10" y="90">6/26</text><text class="clab" x="270" y="90" text-anchor="end">6/27</text>
+          <text class="clab" x="10" y="90">1화 6/26</text><text class="clab" x="270" y="90" text-anchor="end">2화 6/27</text>
         </svg>
         <div class="cap">2회 만에 전국 15.7%·순간 18.1% — 2021년 이후 최단기간 15% 돌파</div>
       </div>
@@ -237,9 +253,9 @@
         <div class="col">
           <h3>이번 주 요약</h3>
           <ul class="issues">
-            <li><span class="axis">[성과]</span>첫방 9.5%→15.7%(순간 18.1%) 급등, 동시간대 1위</li>
+            <li><span class="axis">[성과]</span>첫방 9.5%→2화 15.7%(순간 18.1%) 급등, 동시간대 1위</li>
             <li><span class="axis">[화제 요인]</span>소지섭 13년 만의 SBS 복귀·'아빠 유니버스' 액션이 주말 화제 견인</li>
-            <li><span class="axis">[시청 반응]</span>초반 "뻔하다·올드하다" 혹평은 반전 이후 잦아드는 추세</li>
+            <li><span class="axis">[시청 반응]</span>초반 "뻔하다·올드하다" 혹평은 2화 반전 이후 잦아드는 추세</li>
           </ul>
           <div class="clips">🎬 화제 장면 · <a href="https://www.youtube.com/shorts/Ngim4E57bJY">소지섭 맨몸 액션 (쇼츠)</a> · <a href="https://www.youtube.com/watch?v=9KFkdt14xJw">각성 사이다 액션 (클립)</a></div>
         </div>
@@ -315,7 +331,7 @@
         <div>
           <span class="tag broadcast">방송</span><span class="event end">종영</span>
           <h2>오십프로</h2>
-          <div class="meta">MBC 금토 · 이번 주 방영(피날레 6/27) · 신하균·오정세·허성태</div>
+          <div class="meta">MBC 금토 · 이번 주 11~12화(피날레 6/27) · 신하균·오정세·허성태</div>
         </div>
         <div class="buzz-block">
           <div class="buzz-l">주간 화제성</div>
@@ -336,9 +352,9 @@
           <polyline class="line" points="10,42 33.6,48 57.3,33.75 80.9,36 104.5,39 128.2,39 151.8,35.25 175.5,38.25 199.1,33 222.7,39 246.4,30 270,37.5"/>
           <circle class="pt" cx="10" cy="42" r="2.6"/><circle class="pt" cx="246.4" cy="30" r="3.2"/><circle class="pt" cx="270" cy="37.5" r="3.2"/>
           <text class="cval" x="10" y="36">4.4</text><text class="cval" x="246.4" y="24" text-anchor="middle">6.0</text><text class="cval" x="270" y="49" text-anchor="end">5.0</text>
-          <text class="clab" x="10" y="90">첫방</text><text class="clab" x="270" y="90" text-anchor="end">종영</text>
+          <text class="clab" x="10" y="90">1화</text><text class="clab" x="246.4" y="90" text-anchor="middle">11화</text><text class="clab" x="270" y="90" text-anchor="end">12화·完</text>
         </svg>
-        <div class="cap">5~6%대 안정적 유지, 자체최고 후 피날레 5.0% 마무리(순간 최고 8.2%)</div>
+        <div class="cap">5~6%대 안정적 유지, 11화 자체최고 후 피날레 5.0% 마무리(순간 최고 8.2%)</div>
       </div>
       <div class="card-body">
         <div class="col">
@@ -384,87 +400,63 @@
     <div class="navlist">
 
       <a class="nav-row" href="#drama-chamgyoyuk">
-        <span class="nav-no">1</span>
+        <span class="nav-rank">1</span>
         <span class="nav-thumb"><img src="img/chamgyoyuk.jpg" alt="" loading="lazy"></span>
-        <span class="nav-main">
-          <span class="nav-title"><span class="tag original">OTT</span>참교육<span class="nav-ep">넷플릭스 · 이월</span><span class="event on">글로벌 1위</span></span>
-          <span class="nav-head">넷플릭스 비영어 글로벌 1위 3주 연속 — 이번 주도 압도적 최강</span>
-        </span>
-        <span class="nav-right">
-          <span><span class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span> <span class="nav-grade g5">매우 높음</span></span>
-          <span class="nav-meta">순위 <span class="flat">─ 유지</span> · 호평 70%</span>
-          <span class="nav-go">자세히 →</span>
-        </span>
+        <span class="nav-title"><span class="tag original">OTT</span>참교육<span class="nav-ep">넷플릭스 · 이월</span><span class="event on">글로벌 1위</span></span>
+        <span class="nav-grade-wrap"><span class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span> <span class="nav-grade g5">매우 높음</span></span>
+        <span class="nav-head">넷플릭스 비영어 글로벌 1위 3주 연속 — 이번 주도 압도적 최강</span>
+        <span class="nav-meta">순위 <span class="flat">─ 유지</span> · 호평 70%</span>
+        <span class="nav-go">자세히 →</span>
       </a>
 
       <a class="nav-row" href="#drama-kimbujang">
-        <span class="nav-no">2</span>
+        <span class="nav-rank">2</span>
         <span class="nav-thumb"><img src="img/kimbujang.jpg" alt="" loading="lazy"></span>
-        <span class="nav-main">
-          <span class="nav-title"><span class="tag broadcast">방송</span>김부장<span class="nav-ep">SBS 금토</span><span class="event new">신작</span></span>
-          <span class="nav-head">첫방 9.5%→15.7% 급등, 소지섭 복귀 주말 화제 견인</span>
-        </span>
-        <span class="nav-right">
-          <span><span class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span> <span class="nav-grade g4">높음</span></span>
-          <span class="nav-meta">순위 <span class="rankchg new">NEW</span> · 호평 62% <span class="up">▲</span></span>
-          <span class="nav-go">자세히 →</span>
-        </span>
+        <span class="nav-title"><span class="tag broadcast">방송</span>김부장<span class="nav-ep">SBS 금토 · 1~2화</span><span class="event new">신작</span></span>
+        <span class="nav-grade-wrap"><span class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span> <span class="nav-grade g4">높음</span></span>
+        <span class="nav-head">첫방 9.5%→2화 15.7% 급등, 소지섭 복귀 주말 화제 견인</span>
+        <span class="nav-meta">순위 <span class="rankchg new">NEW</span> · 호평 62% <span class="up">▲</span></span>
+        <span class="nav-go">자세히 →</span>
       </a>
 
       <a class="nav-row" href="#drama-maneutjul">
-        <span class="nav-no">3</span>
+        <span class="nav-rank">3</span>
         <span class="nav-thumb"><img src="img/maneutjul.jpg" alt="" loading="lazy"></span>
-        <span class="nav-main">
-          <span class="nav-title"><span class="tag original">OTT</span>맨 끝줄 소년<span class="nav-ep">넷플릭스 · 6/26</span><span class="event new">신작</span></span>
-          <span class="nav-head">최민식 데뷔작, 공개 첫 주 비영어 글로벌 8위·국내 2위</span>
-        </span>
-        <span class="nav-right">
-          <span><span class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span> <span class="nav-grade g4">높음</span></span>
-          <span class="nav-meta">순위 <span class="rankchg new">NEW</span> · 호평 62%</span>
-          <span class="nav-go">자세히 →</span>
-        </span>
+        <span class="nav-title"><span class="tag original">OTT</span>맨 끝줄 소년<span class="nav-ep">넷플릭스 · 6/26</span><span class="event new">신작</span></span>
+        <span class="nav-grade-wrap"><span class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span> <span class="nav-grade g4">높음</span></span>
+        <span class="nav-head">최민식 데뷔작, 공개 첫 주 비영어 글로벌 8위·국내 2위</span>
+        <span class="nav-meta">순위 <span class="rankchg new">NEW</span> · 호평 62%</span>
+        <span class="nav-go">자세히 →</span>
       </a>
 
       <div class="nav-row info">
-        <span class="nav-no">4</span>
+        <span class="nav-rank">4</span>
         <span class="nav-thumb"><img src="img/kangchairman.jpg" alt="" loading="lazy"></span>
-        <span class="nav-main">
-          <span class="nav-title"><span class="tag broadcast">방송</span>신입사원 강회장<span class="nav-ep">JTBC 토일 · 방영중</span><span class="event on">방영중</span></span>
-          <span class="nav-head">자체최고 11%대 유지, JTBC 토일 화제성 싹쓸이 — 이준영·손현주</span>
-        </span>
-        <span class="nav-right">
-          <span><span class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span> <span class="nav-grade g4">높음</span></span>
-          <span class="nav-meta">순위 <span class="up">▲2</span> · 호평 68%</span>
-          <span class="nav-go mute">─</span>
-        </span>
+        <span class="nav-title"><span class="tag broadcast">방송</span>신입사원 강회장<span class="nav-ep">JTBC 토일 · 방영중</span><span class="event on">방영중</span></span>
+        <span class="nav-grade-wrap"><span class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span> <span class="nav-grade g4">높음</span></span>
+        <span class="nav-head">자체최고 11%대 유지, JTBC 토일 화제성 싹쓸이 — 이준영·손현주</span>
+        <span class="nav-meta">순위 <span class="up">▲2</span> · 호평 68%</span>
+        <span class="nav-go mute">─</span>
       </div>
 
       <div class="nav-row info">
-        <span class="nav-no">5</span>
+        <span class="nav-rank">5</span>
         <span class="nav-thumb"><img src="img/seomboy.jpg" alt="" loading="lazy"></span>
-        <span class="nav-main">
-          <span class="nav-title"><span class="tag broadcast">방송</span>닥터 섬보이<span class="nav-ep">ENA 월화 · 방영중</span><span class="event on">방영중</span></span>
-          <span class="nav-head">ENA 역대 최고 출발(5회 연속 1위), 이재욱·신예은 의학물</span>
-        </span>
-        <span class="nav-right">
-          <span><span class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span> <span class="nav-grade g3">보통</span></span>
-          <span class="nav-meta">순위 <span class="up">▲1</span> · 호평 68%</span>
-          <span class="nav-go mute">─</span>
-        </span>
+        <span class="nav-title"><span class="tag broadcast">방송</span>닥터 섬보이<span class="nav-ep">ENA 월화 · 방영중</span><span class="event on">방영중</span></span>
+        <span class="nav-grade-wrap"><span class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span> <span class="nav-grade g3">보통</span></span>
+        <span class="nav-head">ENA 역대 최고 출발(5회 연속 1위), 이재욱·신예은 의학물</span>
+        <span class="nav-meta">순위 <span class="up">▲1</span> · 호평 68%</span>
+        <span class="nav-go mute">─</span>
       </div>
 
       <a class="nav-row" href="#drama-ohsibpro">
-        <span class="nav-no">6</span>
+        <span class="nav-rank">6</span>
         <span class="nav-thumb"><img src="img/ohsibpro.jpg" alt="" loading="lazy"></span>
-        <span class="nav-main">
-          <span class="nav-title"><span class="tag broadcast">방송</span>오십프로<span class="nav-ep">MBC 금토</span><span class="event end">종영</span></span>
-          <span class="nav-head">피날레 최고 8.2%·최종 5.0%, 3인 공조로 유종의 미</span>
-        </span>
-        <span class="nav-right">
-          <span><span class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span> <span class="nav-grade g3">보통</span></span>
-          <span class="nav-meta">순위 <span class="flat">─</span> · 호평 70%</span>
-          <span class="nav-go">자세히 →</span>
-        </span>
+        <span class="nav-title"><span class="tag broadcast">방송</span>오십프로<span class="nav-ep">MBC 금토 · 11~12화</span><span class="event end">종영</span></span>
+        <span class="nav-grade-wrap"><span class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span> <span class="nav-grade g3">보통</span></span>
+        <span class="nav-head">피날레 최고 8.2%·최종 5.0%, 3인 공조로 유종의 미</span>
+        <span class="nav-meta">순위 <span class="flat">─</span> · 호평 70%</span>
+        <span class="nav-go">자세히 →</span>
       </a>
 
     </div>
