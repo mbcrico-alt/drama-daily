@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>드라마 반응 데일리</title>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="드라마 반응 리포트">
+<meta property="og:title" content="드라마 반응 데일리 · 2026.07.06">
+<meta property="og:description" content="국내 드라마 기사·SNS·커뮤니티 반응과 화제성을 한눈에 보는 자동 리포트.">
+<meta property="og:url" content="https://mbcrico-alt.github.io/drama-daily/reports/2026-07-06.html">
+<meta property="og:image" content="https://mbcrico-alt.github.io/drama-daily/reports/img/kangchairman.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mbcrico-alt.github.io/drama-daily/reports/img/kangchairman.jpg">
+<meta name="twitter:title" content="드라마 반응 데일리 · 2026.07.06">
+<meta name="twitter:description" content="국내 드라마 기사·SNS·커뮤니티 반응과 화제성을 한눈에 보는 자동 리포트.">
+<style>
+  .card-hero{width:100%;aspect-ratio:16/9;overflow:hidden;background:#e6e1ea;border-radius:5px 5px 0 0}
+  .card-hero img{width:100%;height:100%;object-fit:cover;object-position:center 22%;display:block}
+  /* 허브 목록 카드: 상단 좌=썸네일+제목, 우=등급/시청률(세로) · 하단=요약 전체폭 */
+  .nav-row{grid-template-columns:20px 64px 1fr auto !important;
+    grid-template-areas:"rank thumb title grade" "rank thumb title meta" "head head head go" !important;
+    gap:2px 12px !important; align-items:center !important; padding:14px 16px !important}
+  .nav-rank{grid-area:rank;align-self:center;font-size:15px;font-weight:800;color:var(--muted);text-align:center}
+  .nav-thumb{grid-area:thumb;align-self:center;width:64px;height:64px;border-radius:8px;overflow:hidden;background:#e6e1ea}
+  .nav-thumb img{width:100%;height:100%;object-fit:cover;object-position:center 22%;display:block}
+  .nav-title{grid-area:title;align-self:center;word-break:keep-all}
+  .nav-grade-wrap{grid-area:grade;align-self:end;display:flex;align-items:center;justify-content:flex-end;gap:6px;white-space:nowrap}
+  .nav-meta{grid-area:meta;align-self:start;display:flex;flex-direction:column;align-items:flex-end;line-height:1.35;font-size:11.5px;color:var(--muted);white-space:nowrap;margin-top:2px}
+  .nav-head{grid-area:head;align-self:center;white-space:normal !important;overflow:visible !important;text-overflow:clip !important;font-size:13px;line-height:1.5;color:var(--ink);margin:6px 0 0 !important}
+  .nav-go{grid-area:go;align-self:center;text-align:right;white-space:nowrap;margin:6px 0 0 !important}
+  @media(max-width:680px){
+    .nav-row{grid-template-columns:18px 56px 1fr auto !important;gap:2px 9px !important;padding:12px !important}
+    .nav-thumb{width:56px;height:56px}
+    .nav-title{font-size:15px}
+    .nav-meta{font-size:10.5px}
+    .nav-grade-wrap .steps{display:none}
+  }
+</style>
+</head>
+<body>
+<style>
+  :root{--ground:#EFEDE9;--surface:#FFFFFF;--ink:#1A1722;--muted:#716C7E;--hair:#E0DDD8;--accent:#6D30C4;--pos:#1B916A;--neg:#D23A57;--neu:#B0891F;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ground)}
+  .wrap{max-width:940px;margin:0 auto;padding:24px 20px 64px;color:var(--ink);font-family:Pretendard,"Apple SD Gothic Neo",system-ui,-apple-system,sans-serif;line-height:1.55}
+  .view{display:none}
+  #overview{display:block}
+  .detail:target{display:block}
+  .detail:target ~ #overview{display:none}
+  .board{display:inline-flex;gap:2px;background:var(--hair);padding:3px;border-radius:8px;margin-bottom:16px}
+  .board-tab{font-size:12.5px;font-weight:700;color:var(--muted);text-decoration:none;padding:6px 15px;border-radius:6px;transition:color .15s}
+  .board-tab.active{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.07)}
+  .board-tab:hover:not(.active){color:var(--ink)}
+  .masthead{border-bottom:2px solid var(--ink);padding-bottom:13px;margin-bottom:4px}
+  .brand{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .brand h1{font-family:Pretendard,"Apple SD Gothic Neo",system-ui,sans-serif;font-weight:800;font-size:27px;letter-spacing:-.01em;margin:0}
+  .brand h1 .k{color:var(--accent)}
+  .issue{font-size:12px;color:var(--muted);text-align:right}
+  .datenav{display:inline-flex;align-items:center;gap:6px;justify-content:flex-end}
+  .datebtn{display:inline-flex;height:22px;padding:0 8px;align-items:center;justify-content:center;border:1px solid var(--hair);border-radius:4px;color:var(--muted);text-decoration:none;font-size:11px;background:var(--surface)}
+  .datebtn:hover{border-color:var(--accent);color:var(--accent)}
+  .datepick{font-family:inherit;font-size:12px;color:var(--ink);border:1px solid var(--hair);border-radius:4px;padding:3px 6px;background:var(--surface)}
+  .issue-sub{font-size:11.5px;color:var(--muted);margin-top:5px}
+  .kicker{text-transform:uppercase;letter-spacing:.18em;font-size:10.5px;font-weight:700;color:var(--accent);margin:0 0 6px}
+  .summary{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--hair);border:1px solid var(--hair);margin:18px 0 20px}
+  .stat{background:var(--ground);padding:11px 14px}
+  .stat .n{font-size:22px;font-weight:800;letter-spacing:-.02em}
+  .stat .l{font-size:11px;color:var(--muted);margin-top:2px}
+  .sect-label{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:700;margin:0 0 11px}
+  .g5{color:var(--accent)}.g4{color:var(--accent)}.g3{color:var(--neu)}.g2{color:var(--muted)}.g1{color:var(--muted)}
+  .steps{display:inline-flex;gap:3px;vertical-align:middle}
+  .steps i{width:11px;height:6px;border-radius:2px;background:var(--hair);display:block}
+  .steps i.on{background:var(--accent)}
+  .up{color:var(--pos)}.down{color:var(--neg)}.flat{color:var(--muted)}
+  .navlist{display:flex;flex-direction:column;gap:10px}
+  .nav-row{display:grid;grid-template-columns:22px 1fr auto;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--hair);border-radius:5px;padding:14px 16px;text-decoration:none;color:inherit;transition:border-color .15s,transform .15s}
+  .nav-row:hover{border-color:var(--accent);transform:translateY(-1px)}
+  .nav-no{font-family:Pretendard,sans-serif;font-size:16px;font-weight:800;color:var(--muted);text-align:center}
+  .nav-main{min-width:0}
+  .nav-title{font-size:16px;font-weight:800;letter-spacing:-.01em}
+  .nav-ep{font-size:11.5px;color:var(--muted);font-weight:600;margin-left:7px}
+  .nav-head{font-size:13px;color:var(--ink);margin-top:4px;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .nav-right{text-align:right;flex-shrink:0;display:flex;flex-direction:column;align-items:flex-end;gap:5px}
+  .nav-grade{font-size:13px;font-weight:800}
+  .nav-meta{font-size:11px;color:var(--muted)}
+  .nav-go{color:var(--accent);font-weight:700;font-size:12px;margin-top:2px}
+  .tag{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.06em;padding:2px 6px;border-radius:3px;text-transform:uppercase;vertical-align:middle;margin-right:6px}
+  .tag.broadcast{background:var(--accent);color:#fff}
+  .tag.original{background:#12121a;color:#fff}
+  .event{display:inline-block;font-size:9.5px;font-weight:800;padding:2px 6px;border-radius:3px;vertical-align:middle;margin-left:4px}
+  .event.new{background:#E9E1F7;color:var(--accent)}
+  .event.end{background:#EDEAF0;color:var(--muted)}
+  .back{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:700;color:var(--accent);text-decoration:none;margin-bottom:14px}
+  .back:hover{text-decoration:underline}
+  .card{background:var(--surface);border:1px solid var(--hair);border-radius:5px;overflow:hidden}
+  .card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;padding:16px 18px 12px}
+  .card h2{margin:0;font-size:21px;font-weight:800;letter-spacing:-.01em}
+  .meta{font-size:12px;color:var(--muted);margin-top:3px}
+  .dday{font-weight:700;color:var(--ink)}
+  .buzz-block{text-align:right;flex-shrink:0}
+  .buzz-l{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+  .buzz-grade{font-size:21px;font-weight:800;line-height:1.1;margin-top:3px}
+  .buzz-steps{display:flex;gap:3px;justify-content:flex-end;margin-top:7px}
+  .buzz-steps i{width:15px;height:7px;border-radius:2px;background:var(--hair);display:block}
+  .buzz-steps i.on{background:var(--accent)}
+  .buzz-delta{font-size:12px;font-weight:700;margin-top:6px}
+  .senti{display:flex;height:8px;border-radius:4px;overflow:hidden;margin:0 18px}
+  .senti span{display:block}
+  .senti .p{background:var(--pos)}.senti .n{background:var(--neg)}.senti .u{background:var(--neu)}
+  .senti-legend{display:flex;gap:14px;font-size:11px;color:var(--muted);margin:7px 18px 0;flex-wrap:wrap;align-items:center}
+  .senti-legend .rating{color:var(--accent);font-weight:800;font-size:12px}
+  .senti-legend .samp{color:var(--muted);margin-left:auto}
+  .dot{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:4px;vertical-align:middle}
+  .card-body{display:grid;grid-template-columns:1.1fr 1fr;gap:0;border-top:1px solid var(--hair);margin-top:14px}
+  .col{padding:14px 18px}
+  .col+.col{border-left:1px solid var(--hair)}
+  .col h3{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin:0 0 10px;font-weight:700}
+  .col h3 .ep{color:var(--accent);font-weight:800}
+  .issues{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+  .issues li{font-size:13.5px;padding-left:16px;position:relative}
+  .issues li::before{content:"";position:absolute;left:0;top:8px;width:5px;height:5px;border-radius:50%;background:var(--accent)}
+  .axis{font-size:11px;font-weight:800;color:var(--accent);margin-right:4px}
+  .clips{margin:11px 18px 0;font-size:12px;color:var(--muted)}
+  .clips a{color:var(--accent);text-decoration:none;font-weight:600}
+  .clips a:hover{text-decoration:underline}
+  .articles{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px}
+  .articles a{color:var(--ink);text-decoration:none;font-size:13px;display:block}
+  .articles a:hover .h{text-decoration:underline;color:var(--accent)}
+  .articles .src{font-size:11px;color:var(--muted);display:block;margin-top:1px}
+  .articles .src b{color:var(--accent);font-weight:700}
+  .quote{border-left:3px solid var(--hair);padding:2px 0 2px 11px;margin:0 0 10px;font-size:13px}
+  .quote .who{font-size:11px;color:var(--muted);margin-top:3px}
+  .quote .who a{color:inherit;text-decoration:none}
+  .quote .who a:hover{text-decoration:underline;color:var(--accent)}
+  .pill{font-size:10px;font-weight:700;padding:1px 6px;border-radius:20px;margin-left:6px}
+  .pill.pos{background:#E4F3EC;color:var(--pos)}
+  .pill.neg{background:#FBE6EA;color:var(--neg)}
+  .window{font-size:11px;color:var(--muted);margin:0 18px 12px}
+  footer{margin-top:26px;padding-top:16px;border-top:1px solid var(--hair);font-size:12px;color:var(--muted)}
+  footer b{color:var(--ink)}
+  @media(max-width:680px){.summary{grid-template-columns:repeat(2,1fr)}.card-body{grid-template-columns:1fr}.col+.col{border-left:none;border-top:1px solid var(--hair)}.nav-head{white-space:normal}}
+</style>
+
+<div class="wrap">
+
+  <nav class="board">
+    <a class="board-tab active" href="https://mbcrico-alt.github.io/drama-daily/">데일리</a>
+    <a class="board-tab" href="https://mbcrico-alt.github.io/drama-daily/weekly.html">위클리</a>
+    <a class="board-tab" href="https://mbcrico-alt.github.io/drama-daily/monthly.html">월간</a>
+  </nav>
+
+  <!-- 신입사원 강회장 -->
+  <section class="view detail" id="drama-kangchairman">
+    <a class="back" href="#overview">← 전체 보기</a>
+    <div class="card">
+      <div class="card-hero"><img src="img/kangchairman.jpg" alt="신입사원 강회장" loading="lazy"></div>
+      <div class="card-top">
+        <div>
+          <span class="tag broadcast">방송</span><span class="event end">종영</span>
+          <h2>신입사원 강회장</h2>
+          <div class="meta">JTBC 토일 · 12화 최종회(7/5 일, 종영) · 이준영·손현주·이주명 · 판타지 코미디</div>
+        </div>
+        <div class="buzz-block">
+          <div class="buzz-l">화제성</div>
+          <div class="buzz-grade g4">높음</div>
+          <div class="buzz-steps"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+          <div class="buzz-delta up">▲ 자체최고 (11화 10.8%→12화 13.6%)</div>
+        </div>
+      </div>
+      <div class="senti"><span class="p" style="width:68%"></span><span class="u" style="width:20%"></span><span class="n" style="width:12%"></span></div>
+      <div class="senti-legend">
+        <span class="rating">전국 13.6% (자체최고·종영)</span>
+        <span><span class="dot" style="background:var(--pos)"></span>호평 68%</span>
+        <span><span class="dot" style="background:var(--neu)"></span>중립 20%</span>
+        <span><span class="dot" style="background:var(--neg)"></span>혹평 12%</span>
+        <span class="samp">표본 22건</span>
+      </div>
+      <div class="card-body">
+        <div class="col">
+          <h3>오늘의 이슈 <span class="ep">· 12화 최종회 (7/5 일 방송)</span></h3>
+          <ul class="issues">
+            <li><span class="axis">[성과]</span>최종회 전국 <b>13.6%로 자체최고 경신하며 종영</b> — 11화 10.8%→12화 13.6%, 첫방 3.7%에서 4배 가까이 커진 역주행 마무리</li>
+            <li><span class="axis">[화제 요인]</span>이준영이 손현주(강용호) 영혼을 빙의한 채 태하그룹 부녀를 제압 → 마지막에 류진과 재충돌해 다시 '영혼 체인지'되는 엔딩으로 원작 판타지 설정 수미상관</li>
+            <li><span class="axis">[시청 반응]</span>이준영·손현주 연기와 12부작 완결성에 호평, 다만 막판 코믹 '영혼 체인지' 엔딩엔 "여운 깨졌다" 호불호</li>
+          </ul>
+          <div class="clips">🎬 화제 장면 · <a href="https://www.youtube.com/watch?v=Zq4vZREfHWk">"며느리 너였구나" 진범 반전신 (클립)</a></div>
+        </div>
+        <div class="col">
+          <h3>주요 기사 <span class="ep">· 최신순</span></h3>
+          <ul class="articles">
+            <li><a href="https://www.sportsseoul.com/news/read/1620616"><span class="h">"미워해줘서 고마워"…'신입사원 강회장' 최종회, 이준영·이주명·전혜진·진구의 마지막 인사</span><span class="src"><b>스포츠서울</b> · 오늘</span></a></li>
+            <li><a href="https://www.slist.kr/news/articleView.html?idxno=749734"><span class="h">막 내린 '신입사원 강회장'…이준영, 류진과 부딪혀 다시 영혼 체인지 엔딩</span><span class="src"><b>싱글리스트</b> · 오늘</span></a></li>
+            <li><a href="https://v.daum.net/v/20260705134343313"><span class="h">"미워해줘서 고마워"…'신입사원 강회장' 최종회, 이준영의 마지막</span><span class="src"><b>스포츠서울(다음)</b> · 오늘</span></a></li>
+            <li><a href="https://www.topstarnews.net/news/articleView.html?idxno=16124163"><span class="h">이준영 "늦은 시간 함께해 주셔 감사"…'신입사원 강회장' 종영 소감</span><span class="src"><b>톱스타뉴스</b> · 오늘 오전</span></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="card-body" style="border-top:1px solid var(--hair)">
+        <div class="col" style="grid-column:1/-1">
+          <h3>SNS·커뮤니티 반응 <span class="ep">· 12화 방송 직후~오늘 08:00</span></h3>
+          <blockquote class="quote">"이준영 딕션·표정 연기 진짜 물올랐다, 회장 빙의 완벽 소화" <span class="pill pos">호평</span><div class="who"><a href="https://theqoo.net/square/4234005029">더쿠 →</a></div></blockquote>
+          <blockquote class="quote">"12부작 깔끔하게 완결, 손현주 살아있어서 다행 ㅠㅠ 유종의 미" <span class="pill pos">호평</span><div class="who"><a href="https://www.fmkorea.com/10046220494">에펨코리아 →</a></div></blockquote>
+          <blockquote class="quote">"근데 마지막에 또 영혼 체인지는 굳이였나…여운 좀 깨짐" <span class="pill neg">호불호</span><div class="who"><a href="https://www.instiz.net/name_enter/97160810">인스티즈 →</a></div></blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 결혼의 완성 -->
+  <section class="view detail" id="drama-marriage">
+    <a class="back" href="#overview">← 전체 보기</a>
+    <div class="card">
+      <div class="card-hero"><img src="img/marriage.jpg" alt="결혼의 완성" loading="lazy"></div>
+      <div class="card-top">
+        <div>
+          <span class="tag broadcast">방송</span><span class="event new">신작</span>
+          <h2>결혼의 완성</h2>
+          <div class="meta">KBS2 토일(디즈니+ 동시공개) · 2화 방송(7/5 일) · 남궁민·이설·김대명 · 범죄 스릴러</div>
+        </div>
+        <div class="buzz-block">
+          <div class="buzz-l">화제성</div>
+          <div class="buzz-grade g3">보통</div>
+          <div class="buzz-steps"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div>
+          <div class="buzz-delta up">▲ 상승세 (1화 4.6%→2화 6%대)</div>
+        </div>
+      </div>
+      <div class="senti"><span class="p" style="width:56%"></span><span class="u" style="width:28%"></span><span class="n" style="width:16%"></span></div>
+      <div class="senti-legend">
+        <span class="rating">전국 6%대 (2화)</span>
+        <span><span class="dot" style="background:var(--pos)"></span>호평 56%</span>
+        <span><span class="dot" style="background:var(--neu)"></span>중립 28%</span>
+        <span><span class="dot" style="background:var(--neg)"></span>혹평 16%</span>
+        <span class="samp">표본 적음(참고)</span>
+      </div>
+      <div class="card-body">
+        <div class="col">
+          <h3>오늘의 이슈 <span class="ep">· 2화 (7/5 일 방송)</span></h3>
+          <ul class="issues">
+            <li><span class="axis">[성과]</span>2화 전국 <b>6%대 돌파</b> — 1화 4.6%→2화 상승, 김부장(금토)과 편성이 갈리는 일요일 단독 효과로 반등</li>
+            <li><span class="axis">[화제 요인]</span>남궁민(강태주), 아내 살인청부 누명으로 체포·심문실 사투 → 10억 들고 납치범에게 향하는 전기충격기 엔딩, 박병은 등장으로 판 확대</li>
+            <li><span class="axis">[시청 반응]</span>"남궁민 연기 차력쇼" 몰입 호평 vs "전개 클리셰·답답 전개" 지적 혼재, 김부장 대비 화력은 아직 열세</li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>주요 기사 <span class="ep">· 최신순</span></h3>
+          <ul class="articles">
+            <li><a href="https://v.daum.net/v/20260705223853122"><span class="h">남궁민, 아내 살인청부 체포 충격 속 암전된 경찰서 의문의 구원자 등장</span><span class="src"><b>비즈엔터(다음)</b> · 어젯밤</span></a></li>
+            <li><a href="https://www.heraldmuse.com/article/10798318"><span class="h">'결혼의 완성' 남궁민, 10억 들고 납치범에게…전기충격기 엔딩 충격</span><span class="src"><b>헤럴드뮤즈</b> · 어젯밤</span></a></li>
+            <li><a href="https://enter.etoday.co.kr/news/view/299359"><span class="h">[종합] '결혼의 완성' 남궁민, 살인청부 누명 쓰고 체포…박병은 등장</span><span class="src"><b>비즈엔터</b> · 어제</span></a></li>
+            <li><a href="https://isplus.com/article/view/isp202607050034"><span class="h">남궁민 '결혼의 완성' 4.4%로 출발 [차트IS]</span><span class="src"><b>일간스포츠</b> · 오늘</span></a></li>
+            <li><a href="https://sports.khan.co.kr/article/202607050836003"><span class="h">[스경X초점] '김부장'은 21%인데…'결혼의 완성' 남궁민, 4%로 출발</span><span class="src"><b>스포츠경향</b> · 어제</span></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="card-body" style="border-top:1px solid var(--hair)">
+        <div class="col" style="grid-column:1/-1">
+          <h3>SNS·커뮤니티 반응 <span class="ep">· 2화 방송 직후~오늘 08:00</span></h3>
+          <div class="window">※ 남궁민 연기·심문실 사투엔 호평, 초반 전개엔 "클리셰·답답" 지적 혼재 — 방송 초반이라 커뮤니티 표본 부족(참고). 디즈니+ 동시공개로 온라인 반응은 서서히 형성 중.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 허브 ============ -->
+  <section class="view" id="overview">
+    <header class="masthead">
+      <p class="kicker">Daily Drama Buzz Report</p>
+      <div class="brand">
+        <h1>드라마 반응 <span class="k">데일리</span></h1>
+        <div class="issue">
+          <div class="datenav">
+            <a class="datebtn" href="2026-07-05.html" title="이전 날">◀</a>
+            <input type="date" class="datepick" value="2026-07-06" onchange="if(this.value)location.href=this.value+'.html'">
+            <a class="datebtn" href="2026-07-07.html" title="다음 날">▶</a>
+          </div>
+          <div class="issue-sub">2026년 7월 6일 (월) · 오전 8:00 발송 · 어제(7/5 일) 방영분 · 2편</div>
+        </div>
+      </div>
+    </header>
+
+    <section class="summary">
+      <div class="stat"><div class="n">2</div><div class="l">모니터링 작품</div></div>
+      <div class="stat"><div class="n">9</div><div class="l">수집 기사 (24h)</div></div>
+    </section>
+
+    <p class="sect-label">화제성 높은 순 (눌러서 상세)</p>
+    <div class="navlist">
+
+      <a class="nav-row" href="#drama-kangchairman">
+        <span class="nav-rank">1</span>
+        <span class="nav-thumb"><img src="img/kangchairman.jpg" alt="" loading="lazy"></span>
+        <span class="nav-title"><span class="tag broadcast">방송</span>신입사원 강회장<span class="nav-ep">JTBC 토일 · 12화 최종회</span><span class="event end">종영</span></span>
+        <span class="nav-grade-wrap"><span class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span> <span class="nav-grade g4">높음</span></span>
+        <span class="nav-head">최종회 13.6% 자체최고로 종영, 이준영·손현주 연기+영혼 체인지 엔딩 화제</span>
+        <span class="nav-meta"><span class="m1">전국 13.6%</span><span class="m2">호평 68% <span class="up">▲</span></span></span>
+        <span class="nav-go">자세히 →</span>
+      </a>
+
+      <a class="nav-row" href="#drama-marriage">
+        <span class="nav-rank">2</span>
+        <span class="nav-thumb"><img src="img/marriage.jpg" alt="" loading="lazy"></span>
+        <span class="nav-title"><span class="tag broadcast">방송</span>결혼의 완성<span class="nav-ep">KBS2 토일 · 2화</span><span class="event new">신작</span></span>
+        <span class="nav-grade-wrap"><span class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span> <span class="nav-grade g3">보통</span></span>
+        <span class="nav-head">2화 6%대 상승, 남궁민 살인청부 누명 체포…전기충격기 엔딩</span>
+        <span class="nav-meta"><span class="m1">전국 6%대</span><span class="m2">호평 56% <span class="up">▲</span></span></span>
+        <span class="nav-go">자세히 →</span>
+      </a>
+
+    </div>
+
+    <footer>
+      <b>오늘은 7월 첫 월요일</b> — 데일리와 함께 <b>위클리(6월 5주)·월간(6월 결산)</b>도 발행됩니다. 상단 탭에서 확인하세요.<br>
+      <b>집계 제외</b> 김부장(SBS 금토 — 일요일 방영 없음) · 맨 끝줄 소년(넷플릭스, 6/26 공개로 최근 7일 창 밖) · OTT 오리지널의 방송사 재방영<br>
+      <b>다음 데일리</b> 2026년 7월 7일(화) 오전 8:00.<br>
+      데이터 출처: 스포츠서울·싱글리스트·톱스타뉴스·헤럴드뮤즈·비즈엔터·일간스포츠·스포츠경향 · 커뮤니티: 더쿠·에펨코리아·인스티즈
+    </footer>
+  </section>
+</div>
+
+<style>
+  html{-webkit-text-size-adjust:100%}
+  img,svg{max-width:100%}
+  .chart svg{width:100%;height:auto}
+  @media(max-width:680px){
+    .wrap{padding:18px 14px 48px}
+    .brand{gap:8px}
+    .brand h1{font-size:22px}
+    .issue{text-align:left}
+    .datenav{justify-content:flex-start;flex-wrap:wrap}
+    .board{display:flex}
+    .board-tab{flex:1;text-align:center;padding:7px 6px}
+    .card h2{font-size:19px}
+    .card-top{gap:10px;padding:14px 14px 10px}
+    .buzz-grade{font-size:18px}
+    .col{padding:13px 14px}
+    .senti,.senti-legend{margin-left:14px;margin-right:14px}
+    .clips,.window{margin-left:14px;margin-right:14px}
+    .issues li,.articles a{font-size:13.5px}
+  }
+</style>
+
+
+
+  <script src="https://mbcrico-alt.github.io/drama-daily/share.js" defer></script>
+</body>
+</html>
