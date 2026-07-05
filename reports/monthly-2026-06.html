@@ -1,0 +1,677 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>드라마 반응 월간 · 2026년 6월</title>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="드라마 반응 리포트">
+<meta property="og:title" content="드라마 반응 월간 · 2026년 6월">
+<meta property="og:description" content="6월 국내 드라마 기사·SNS·커뮤니티 반응과 화제성 종합 결산 — 참교육·맨끝줄소년·김부장 등 7편.">
+<meta property="og:url" content="https://mbcrico-alt.github.io/drama-daily/reports/monthly-2026-06.html">
+<meta property="og:image" content="https://mbcrico-alt.github.io/drama-daily/reports/img/chamgyoyuk.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="드라마 반응 월간 · 2026년 6월">
+<meta name="twitter:description" content="6월 국내 드라마 화제성 종합 결산 — 넷플릭스 참교육 4주 연속 글로벌 1위 외 7편.">
+<meta name="twitter:image" content="https://mbcrico-alt.github.io/drama-daily/reports/img/chamgyoyuk.jpg">
+<style>
+  .card-hero{width:100%;aspect-ratio:16/9;overflow:hidden;background:#e6e1ea;border-radius:5px 5px 0 0}
+  .card-hero img{width:100%;height:100%;object-fit:cover;object-position:center 22%;display:block}
+  /* 허브 목록 카드: 상단 좌=썸네일+제목, 우=등급/시청률(세로) · 하단=요약 전체폭 */
+  .nav-row{grid-template-columns:20px 64px 1fr auto !important;
+    grid-template-areas:"rank thumb title grade" "rank thumb title meta" "head head head go" !important;
+    gap:2px 12px !important; align-items:center !important; padding:14px 16px !important}
+  .nav-rank{grid-area:rank;align-self:center;font-size:15px;font-weight:800;color:var(--muted);text-align:center}
+  .nav-thumb{grid-area:thumb;align-self:center;width:64px;height:64px;border-radius:8px;overflow:hidden;background:#e6e1ea}
+  .nav-thumb img{width:100%;height:100%;object-fit:cover;object-position:center 22%;display:block}
+  .nav-title{grid-area:title;align-self:center;word-break:keep-all}
+  .nav-grade-wrap{grid-area:grade;align-self:end;display:flex;align-items:center;justify-content:flex-end;gap:6px;white-space:nowrap}
+  .nav-meta{grid-area:meta;align-self:start;display:flex;flex-direction:column;align-items:flex-end;line-height:1.35;font-size:11.5px;color:var(--muted);white-space:nowrap;margin-top:2px}
+  .nav-head{grid-area:head;align-self:center;white-space:normal !important;overflow:visible !important;text-overflow:clip !important;font-size:13px;line-height:1.5;color:var(--ink);margin:6px 0 0 !important}
+  .nav-go{grid-area:go;align-self:center;text-align:right;white-space:nowrap;margin:6px 0 0 !important}
+  @media(max-width:680px){
+    .nav-row{grid-template-columns:18px 56px 1fr auto !important;gap:2px 9px !important;padding:12px !important}
+    .nav-thumb{width:56px;height:56px}
+    .nav-title{font-size:15px}
+    .nav-meta{font-size:10.5px}
+    .nav-grade-wrap .steps{display:none}
+  }
+</style>
+</head>
+<body>
+<style>
+  :root{--ground:#EFEDE9;--surface:#FFFFFF;--ink:#1A1722;--muted:#716C7E;--hair:#E0DDD8;--accent:#6D30C4;--pos:#1B916A;--neg:#D23A57;--neu:#B0891F;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ground)}
+  .wrap{max-width:940px;margin:0 auto;padding:24px 20px 64px;color:var(--ink);font-family:Pretendard,"Apple SD Gothic Neo",system-ui,-apple-system,sans-serif;line-height:1.55}
+  .view{display:none}
+  #overview{display:block}
+  .detail:target{display:block}
+  .detail:target ~ #overview{display:none}
+  .board{display:inline-flex;gap:2px;background:var(--hair);padding:3px;border-radius:8px;margin-bottom:16px}
+  .board-tab{font-size:12.5px;font-weight:700;color:var(--muted);text-decoration:none;padding:6px 15px;border-radius:6px;transition:color .15s}
+  .board-tab.active{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.07)}
+  .board-tab:hover:not(.active){color:var(--ink)}
+  .masthead{border-bottom:2px solid var(--ink);padding-bottom:13px;margin-bottom:4px}
+  .brand{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .brand h1{font-family:Pretendard,"Apple SD Gothic Neo",system-ui,sans-serif;font-weight:800;font-size:27px;letter-spacing:-.01em;margin:0}
+  .brand h1 .k{color:var(--accent)}
+  .issue{font-size:12px;color:var(--muted);text-align:right}
+  .datenav{display:inline-flex;align-items:center;gap:6px;justify-content:flex-end}
+  .datebtn{display:inline-flex;height:22px;padding:0 8px;align-items:center;justify-content:center;border:1px solid var(--hair);border-radius:4px;color:var(--muted);text-decoration:none;font-size:11px;background:var(--surface)}
+  .datebtn:hover{border-color:var(--accent);color:var(--accent)}
+  .weeklabel{font-size:12px;font-weight:700;color:var(--ink);padding:0 4px}
+  .issue-sub{font-size:11.5px;color:var(--muted);margin-top:5px}
+  .kicker{text-transform:uppercase;letter-spacing:.18em;font-size:10.5px;font-weight:700;color:var(--accent);margin:0 0 6px}
+  .summary{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--hair);border:1px solid var(--hair);margin:18px 0 20px}
+  .stat{background:var(--ground);padding:11px 14px}
+  .stat .n{font-size:22px;font-weight:800;letter-spacing:-.02em}
+  .stat .n.small{font-size:15px}
+  .stat .l{font-size:11px;color:var(--muted);margin-top:2px}
+  .sect-label{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:700;margin:22px 0 11px}
+  .g5{color:var(--accent)}.g4{color:var(--accent)}.g3{color:var(--neu)}.g2{color:var(--muted)}.g1{color:var(--muted)}
+  .steps{display:inline-flex;gap:3px;vertical-align:middle}
+  .steps i{width:11px;height:6px;border-radius:2px;background:var(--hair);display:block}
+  .steps i.on{background:var(--accent)}
+  .up{color:var(--pos)}.down{color:var(--neg)}.flat{color:var(--muted)}
+  .navlist{display:flex;flex-direction:column;gap:9px}
+  .nav-row{display:grid;grid-template-columns:22px 1fr auto;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--hair);border-radius:5px;padding:13px 16px;text-decoration:none;color:inherit;transition:border-color .15s,transform .15s}
+  a.nav-row:hover{border-color:var(--accent);transform:translateY(-1px)}
+  .nav-no{font-family:Pretendard,sans-serif;font-size:16px;font-weight:800;color:var(--muted);text-align:center}
+  .nav-title{font-size:15.5px;font-weight:800;letter-spacing:-.01em}
+  .nav-ep{font-size:11.5px;color:var(--muted);font-weight:600;margin-left:7px}
+  .nav-grade{font-size:13px;font-weight:800}
+  .nav-go{color:var(--accent);font-weight:700;font-size:12px}
+  .nav-go.mute{color:var(--muted)}
+  .tag{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.06em;padding:2px 6px;border-radius:3px;text-transform:uppercase;vertical-align:middle;margin-right:6px}
+  .tag.broadcast{background:var(--accent);color:#fff}
+  .tag.original{background:#12121a;color:#fff}
+  .event{display:inline-block;font-size:9.5px;font-weight:800;padding:2px 6px;border-radius:3px;vertical-align:middle;margin-left:4px}
+  .event.new{background:#E9E1F7;color:var(--accent)}
+  .back{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:700;color:var(--accent);text-decoration:none;margin-bottom:14px}
+  .back:hover{text-decoration:underline}
+  .card{background:var(--surface);border:1px solid var(--hair);border-radius:5px;overflow:hidden}
+  .card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;padding:16px 18px 12px}
+  .card h2{margin:0;font-size:21px;font-weight:800;letter-spacing:-.01em}
+  .meta{font-size:12px;color:var(--muted);margin-top:3px}
+  .buzz-block{text-align:right;flex-shrink:0}
+  .buzz-l{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+  .buzz-grade{font-size:21px;font-weight:800;line-height:1.1;margin-top:3px}
+  .buzz-steps{display:flex;gap:3px;justify-content:flex-end;margin-top:7px}
+  .buzz-steps i{width:15px;height:7px;border-radius:2px;background:var(--hair);display:block}
+  .buzz-steps i.on{background:var(--accent)}
+  .buzz-delta{font-size:12px;font-weight:700;margin-top:6px}
+  .wk-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--hair);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);margin-top:14px}
+  .wk-metrics .m{background:var(--surface);padding:11px 16px}
+  .wk-metrics .ml{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+  .wk-metrics .mv{font-size:15px;font-weight:800;margin-top:3px}
+  .wk-metrics .mv small{font-size:11px;font-weight:700;color:var(--muted)}
+  .chart{padding:14px 18px 4px}
+  .chart h3{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin:0 0 10px;font-weight:700}
+  .chart svg{width:100%;height:auto;display:block}
+  .chart .axis{stroke:var(--hair);stroke-width:1}
+  .chart .line{fill:none;stroke:var(--accent);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+  .chart .pt{fill:var(--accent)}
+  .chart .cval{font-size:9px;fill:var(--ink);font-weight:800}
+  .chart .clab{font-size:9px;fill:var(--muted)}
+  .chart .cap{font-size:11px;color:var(--muted);margin-top:2px}
+  .card-body{display:grid;grid-template-columns:1.15fr 1fr;gap:0;border-top:1px solid var(--hair)}
+  .col{padding:15px 18px}
+  .col+.col{border-left:1px solid var(--hair)}
+  .col h3{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin:0 0 11px;font-weight:700}
+  .issues{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:11px}
+  .issues li{font-size:13px;line-height:1.55;padding-left:15px;position:relative}
+  .issues li::before{content:"";position:absolute;left:0;top:8px;width:5px;height:5px;border-radius:50%;background:var(--accent)}
+  .axis{font-size:11px;font-weight:800;color:var(--accent);margin-right:4px}
+  .crux{background:#F5EEFB;border:1px solid #E3D4F5;border-radius:5px;padding:8px 11px;font-size:12px;color:#5B2CA6;margin-bottom:12px;line-height:1.5}
+  .crux b{font-weight:800}
+  .refs{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+  .refs li{font-size:12.5px;line-height:1.45}
+  .refs a{color:var(--ink);text-decoration:none}
+  .refs a:hover{text-decoration:underline;color:var(--accent)}
+  .refs .rt{font-size:10px;font-weight:800;color:var(--accent);margin-right:5px}
+  .refs .rsrc{color:var(--muted);font-size:11px;display:block;margin-top:1px}
+  footer{margin-top:26px;padding-top:16px;border-top:1px solid var(--hair);font-size:12px;color:var(--muted)}
+  footer b{color:var(--ink)}
+  .trend-box{background:var(--surface);border:1px solid var(--hair);border-radius:5px;padding:14px 18px;margin-top:8px;font-size:13px;line-height:1.6}
+  .trend-box b{color:var(--accent)}
+  @media(max-width:680px){.card-body{grid-template-columns:1fr}.col+.col{border-left:none;border-top:1px solid var(--hair)}.nav-head{white-space:normal}}
+</style>
+
+<div class="wrap">
+
+  <nav class="board">
+    <a class="board-tab" href="https://mbcrico-alt.github.io/drama-daily/">데일리</a>
+    <a class="board-tab" href="https://mbcrico-alt.github.io/drama-daily/weekly.html">위클리</a>
+    <a class="board-tab active" href="https://mbcrico-alt.github.io/drama-daily/monthly.html">월간</a>
+  </nav>
+
+  <!-- ============ 상세 (종합 분석) ============ -->
+
+  <!-- 참교육 (종합 결산) -->
+  <section class="view detail" id="drama-chamgyoyuk">
+    <a class="back" href="#overview">← 전체 보기</a>
+    <div class="card">
+      <div class="card-hero"><img src="img/chamgyoyuk.jpg" alt="참교육" loading="lazy"></div>
+      <div class="card-top">
+        <div>
+          <span class="tag original">OTT</span>
+          <h2>참교육</h2>
+          <div class="meta">넷플릭스 오리지널 · 6/5 공개 · 김무열·이성민·진기주·표지훈 · 웹툰 원작 · 홍종찬 감독</div>
+        </div>
+        <div class="buzz-block">
+          <div class="buzz-l">월간 화제성</div>
+          <div class="buzz-grade g5">매우 높음</div>
+          <div class="buzz-steps"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
+          <div class="buzz-delta up">6월 1위</div>
+        </div>
+      </div>
+      <div class="wk-metrics">
+        <div class="m"><div class="ml">글로벌</div><div class="mv">비영어 1위 <small>· 다주 연속</small></div></div>
+        <div class="m"><div class="ml">시청 반응</div><div class="mv">호평 70% <small>· 혹평 18%</small></div></div>
+        <div class="m"><div class="ml">화제성</div><div class="mv">출연자 1위 <small>· 김무열</small></div></div>
+      </div>
+      <div class="chart">
+        <h3>넷플릭스 비영어 글로벌 순위 추이 <span class="clab" style="color:var(--accent);font-weight:800">▲ 1위=최상단</span></h3>
+        <svg viewBox="0 0 280 100" preserveAspectRatio="none" role="img">
+          <line class="axis" x1="10" y1="18" x2="270" y2="18"/>
+          <text class="clab" x="10" y="14">1위</text>
+          <polyline class="line" points="10,30 97,18 183,18 270,18"/>
+          <circle class="pt" cx="10" cy="30" r="3"/><circle class="pt" cx="97" cy="18" r="3"/><circle class="pt" cx="183" cy="18" r="3"/><circle class="pt" cx="270" cy="18" r="3.4"/>
+          <text class="cval" x="10" y="38">3위</text><text class="cval" x="270" y="14" text-anchor="end">1위 유지</text>
+          <text class="clab" x="10" y="90">공개주(6/1주)</text><text class="clab" x="270" y="90" text-anchor="end">6/4주</text>
+        </svg>
+        <div class="cap">공개 3일 만에 1위 직행 → 6월 내내 정상 사수 · 비영어 TV 부문 다주 연속 글로벌 1위</div>
+      </div>
+      <div class="card-body">
+        <div class="col">
+          <h3>6월 종합 결산</h3>
+          <ul class="issues">
+            <li><span class="axis">[성과]</span>6월 최대 성과작. 6/5 공개 후 사흘 만에 넷플릭스 비영어 글로벌 1위로 직행해 <b>여러 주 연속 정상</b>을 사수했다. 국내에서도 '6월 한국인이 좋아하는 방송영상프로그램 1위'(선호도 10.7%)에 오르며 안팎으로 6월을 지배했다.</li>
+            <li><span class="axis">[화제 요인]</span>인기 웹툰 원작 + "교권보호국"의 <b>사이다 응징</b> 구조가 대리만족 엔진. 주연 김무열이 6월 드라마 출연자 화제성 1위에 올랐고, 표지훈(피오)의 봉근대 등 캐릭터도 밈으로 확산됐다. "도파민 그 자체"라는 반응이 완주·재생을 견인했다.</li>
+            <li><span class="axis">[시청 반응]</span>압도적 호평 속 <b>뚜렷한 호불호</b>. 다수 시청자는 "현실에선 불가능한 사이다"로 소비했으나, 교권 단체·평론가는 "폭력을 폭력으로 갚는 판타지"이자 실제 교권 현실과의 괴리를 비판했다. 이 윤리 논쟁 자체가 화제성을 더 키웠다.</li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>화제포인트 · 참고</h3>
+          <div class="crux">🔀 <b>호불호 핵심</b> — '사적 응징 = 사이다'냐 '폭력 미화'냐. 통쾌함과 윤리 논쟁이 동시에 화력으로 작용.</div>
+          <ul class="refs">
+            <li><span class="rt">[평론]</span><a href="https://premium.sbs.co.kr/article/clYCbI2gj">"'참교육'에 전 세계가 열광한 이유…교권보호국 판타지 뒤 숨겨진 불편한 진실"</a><span class="rsrc">SBS 프리미엄</span></li>
+            <li><span class="rt">[기사]</span><a href="https://www.koreadaily.com/article/20260623171226324">"시즌2 해야겠네…김무열 '참교육', 3주 연속 글로벌 1위 터졌다"</a><span class="rsrc">중앙일보</span></li>
+            <li><span class="rt">[기사]</span><a href="https://www.sportsseoul.com/news/read/1614767">"'참교육' 열풍 중심엔 김무열…출연자 화제성 정상"</a><span class="rsrc">스포츠서울</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 맨끝줄소년 (신작) -->
+  <section class="view detail" id="drama-maneutjul">
+    <a class="back" href="#overview">← 전체 보기</a>
+    <div class="card">
+      <div class="card-hero"><img src="img/maneutjul.jpg" alt="맨 끝줄 소년" loading="lazy"></div>
+      <div class="card-top">
+        <div>
+          <span class="tag original">OTT</span><span class="event new">신작</span>
+          <h2>맨 끝줄 소년</h2>
+          <div class="meta">넷플릭스 오리지널 · 6/26 공개 · 최민식·최현욱 주연 · 스페인 희곡 원작</div>
+        </div>
+        <div class="buzz-block">
+          <div class="buzz-l">월간 화제성</div>
+          <div class="buzz-grade g4">높음</div>
+          <div class="buzz-steps"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+          <div class="buzz-delta up">▲ 월말 급상승</div>
+        </div>
+      </div>
+      <div class="wk-metrics">
+        <div class="m"><div class="ml">글로벌</div><div class="mv">비영어 8위 <small>· 41개국 TOP10</small></div></div>
+        <div class="m"><div class="ml">시청 반응</div><div class="mv">호평 62% <small>· 혹평 22%</small></div></div>
+        <div class="m"><div class="ml">넷플릭스</div><div class="mv">국내 2위</div></div>
+      </div>
+      <div class="chart">
+        <h3>넷플릭스 비영어 글로벌 순위 추이 <span class="clab" style="color:var(--accent);font-weight:800">▲ 1위=최상단</span></h3>
+        <svg viewBox="0 0 280 100" preserveAspectRatio="none" role="img">
+          <line class="axis" x1="10" y1="18" x2="270" y2="18"/>
+          <text class="clab" x="10" y="14">1위</text>
+          <polyline class="line" points="10,72 270,60"/>
+          <circle class="pt" cx="10" cy="72" r="3"/><circle class="pt" cx="270" cy="60" r="3.4"/>
+          <text class="cval" x="10" y="67">톱10 진입</text><text class="cval" x="270" y="55" text-anchor="end">8위</text>
+          <text class="clab" x="10" y="90">6/26 공개</text><text class="clab" x="270" y="90" text-anchor="end">첫 주</text>
+        </svg>
+        <div class="cap">6월 말 공개, 첫 주 비영어 글로벌 8위·41개국 TOP10·국내 2위</div>
+      </div>
+      <div class="card-body">
+        <div class="col">
+          <h3>이달 종합</h3>
+          <ul class="issues">
+            <li><span class="axis">[성과]</span>최민식의 넷플릭스 데뷔작. 공개 첫 주 비영어 글로벌 8위, 41개국 TOP10, 국내 2위. 같은 달 참교육의 그늘 속에서도 견고한 성적으로 안착했다.</li>
+            <li><span class="axis">[화제 요인]</span>최민식·최현욱의 <b>심리게임 연기 호흡</b>과 절제된 영상미. 스페인 희곡을 원작으로 한 '집착·관음'의 서스펜스가 문학적 긴장감으로 여느 넷플릭스 신작과 차별화됐다.</li>
+            <li><span class="axis">[시청 반응]</span>연기·연출은 호평이나 <b>무거움·난해함</b>에서 갈렸다. "문학인가 관음인가"라는 찝찝함·진입장벽을 지적하는 쪽과 "생각하게 만드는 웰메이드"로 상찬하는 쪽이 팽팽했다. 최민식 본인도 "호불호를 이해한다"고 언급했다.</li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>화제포인트 · 참고</h3>
+          <div class="crux">🔀 <b>호불호 핵심</b> — '문학적 완성도'냐 '무겁고 난해'냐. 취향 갈림이 오히려 토론 화력으로.</div>
+          <ul class="refs">
+            <li><span class="rt">[평론]</span><a href="https://v.daum.net/v/20260627080201493">[TF리뷰] "문학인가 관음인가…반가움과 찝찝함 사이"</a><span class="rsrc">더팩트</span></li>
+            <li><span class="rt">[인터뷰]</span><a href="https://www.spotvnews.co.kr/news/articleView.html?idxno=826137">최민식 "연극 같은 작품 만족, 호불호 평가도 이해"</a><span class="rsrc">SPOTV NEWS</span></li>
+            <li><span class="rt">[커뮤니티]</span><a href="https://gall.dcinside.com/mgallery/board/view/?id=netflix&no=518964">"연기는 좋은데 개연성 약하고 찝찝"</a><span class="rsrc">디시 넷플릭스 갤러리</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 신입사원 강회장 (종합 결산) -->
+  <section class="view detail" id="drama-kangchairman">
+    <a class="back" href="#overview">← 전체 보기</a>
+    <div class="card">
+      <div class="card-hero"><img src="img/kangchairman.jpg" alt="신입사원 강회장" loading="lazy"></div>
+      <div class="card-top">
+        <div>
+          <span class="tag broadcast">방송</span>
+          <h2>신입사원 강회장</h2>
+          <div class="meta">JTBC 토일 · 5/30 첫방~7/5 종영 · 이준영·손현주·이주명·전혜진 · '리마인드 라이프' 판타지</div>
+        </div>
+        <div class="buzz-block">
+          <div class="buzz-l">월간 화제성</div>
+          <div class="buzz-grade g4">높음</div>
+          <div class="buzz-steps"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+          <div class="buzz-delta up">▲ 상승세</div>
+        </div>
+      </div>
+      <div class="wk-metrics">
+        <div class="m"><div class="ml">6월 시청률</div><div class="mv">3.7→12%대 <small>· 매회 상승</small></div></div>
+        <div class="m"><div class="ml">시청 반응</div><div class="mv">호평 68% <small class="up">▲ 입소문 확산</small></div></div>
+        <div class="m"><div class="ml">화제성</div><div class="mv">TV 통합 2위 <small>· 6월 1~3주</small></div></div>
+      </div>
+      <div class="chart">
+        <h3>회차별 전국 시청률 (%) · 우상향 궤적</h3>
+        <svg viewBox="0 0 280 100" preserveAspectRatio="none" role="img">
+          <line class="axis" x1="10" y1="75" x2="270" y2="75"/>
+          <polyline class="line" points="10,68 62,59.3 114,50.6 166,42 218,26.9 270,20"/>
+          <circle class="pt" cx="10" cy="68" r="2.6"/><circle class="pt" cx="270" cy="20" r="3.4"/>
+          <text class="cval" x="10" y="63">3.7</text><text class="cval" x="270" y="15" text-anchor="end">12%대</text>
+          <text class="clab" x="10" y="90">1화 5/30</text><text class="clab" x="270" y="90" text-anchor="end">6월 말</text>
+        </svg>
+        <div class="cap">첫방 3.7%에서 매회 상승 — 3화 6.7%(2026 JTBC 토일 최고 경신)·4화 8.2% → 6월 말 두 자릿수·자체 최고 12%대</div>
+      </div>
+      <div class="card-body">
+        <div class="col">
+          <h3>6월 종합 결산</h3>
+          <ul class="issues">
+            <li><span class="axis">[성과]</span>6월의 '역주행 성공작'. 첫방 3.7%로 조용히 출발했으나 <b>매회 상승</b>해 3화에 2026년 JTBC 토일극 최고 시청률을 경신, 4화 8.2%를 거쳐 6월 말 두 자릿수·자체 최고 12%대까지 뚫었다.</li>
+            <li><span class="axis">[화제 요인]</span>이준영의 <b>'리마인드 라이프'</b>(재벌 회장이 사고로 원치 않은 두 번째 삶을 사는 판타지) 1인 활약과 손현주·전혜진의 안정적 앙상블. 회차마다 판을 뒤집는 전개가 입소문을 타며 6월 1~3주 내내 TV·OTT 통합 화제성 2위를 지켰다.</li>
+            <li><span class="axis">[시청 반응]</span>"간만에 호평 일색"이라는 반응. 시청률·화제성이 <b>동반 상승</b>하는 보기 드문 궤적으로, 초반 진입장벽을 넘긴 뒤 후반부로 갈수록 몰입도와 만족도가 올라간 '뒷심형' 흥행으로 평가된다.</li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>화제포인트 · 참고</h3>
+          <div class="crux">✔ <b>호불호 적음</b> — 매회 상승한 시청률·화제성이 곧 완성도의 방증. 이준영 원맨쇼가 화제의 축.</div>
+          <ul class="refs">
+            <li><span class="rt">[기사]</span><a href="https://www.starnewskorea.com/broadcast-drama/2026/06/07/2026060710511086644">"이준영 판 뒤집는다…최고 8.1% 올해 JTBC 최고"</a><span class="rsrc">스타뉴스</span></li>
+            <li><span class="rt">[기사]</span><a href="https://www.wikitree.co.kr/articles/1143639">"결국 12% 뚫었다…첫방 3%대였는데 시청률 터진 JTBC 드라마"</a><span class="rsrc">위키트리</span></li>
+            <li><span class="rt">[기사]</span><a href="https://www.topstarnews.net/news/articleView.html?idxno=16088468">"'신입사원 강회장', 시청률 상승→TV 통합 화제성 2위"</a><span class="rsrc">톱스타뉴스</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 김부장 (신작) -->
+  <section class="view detail" id="drama-kimbujang">
+    <a class="back" href="#overview">← 전체 보기</a>
+    <div class="card">
+      <div class="card-hero"><img src="img/kimbujang.jpg" alt="김부장" loading="lazy"></div>
+      <div class="card-top">
+        <div>
+          <span class="tag broadcast">방송</span><span class="event new">신작</span>
+          <h2>김부장</h2>
+          <div class="meta">SBS 금토 · 6/26 첫방(6월 1~2화) · 소지섭·최대훈·윤경호 · 웹툰 원작</div>
+        </div>
+        <div class="buzz-block">
+          <div class="buzz-l">월간 화제성</div>
+          <div class="buzz-grade g4">높음</div>
+          <div class="buzz-steps"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+          <div class="buzz-delta up">▲ 월말 급등</div>
+        </div>
+      </div>
+      <div class="wk-metrics">
+        <div class="m"><div class="ml">6월 시청률</div><div class="mv">15.7% <small>· 1→2화 +6.2%p</small></div></div>
+        <div class="m"><div class="ml">시청 반응</div><div class="mv">호평 62% <small class="up">▲ 2화 후 반등</small></div></div>
+        <div class="m"><div class="ml">비고</div><div class="mv">하반기 기대작 <small>(→7월 23%)</small></div></div>
+      </div>
+      <div class="chart">
+        <h3>6월 회차별 전국 시청률 (%)</h3>
+        <svg viewBox="0 0 280 100" preserveAspectRatio="none" role="img">
+          <line class="axis" x1="10" y1="75" x2="270" y2="75"/>
+          <polyline class="line" points="10,43.3 270,22.7"/>
+          <circle class="pt" cx="10" cy="43.3" r="3"/><circle class="pt" cx="270" cy="22.7" r="3.4"/>
+          <text class="cval" x="10" y="37">9.5</text><text class="cval" x="270" y="16" text-anchor="end">15.7</text>
+          <text class="clab" x="10" y="90">1화 6/26</text><text class="clab" x="270" y="90" text-anchor="end">2화 6/27</text>
+        </svg>
+        <div class="cap">2회 만에 15.7%·순간 18.1% — 2021년 이후 최단기 15% 돌파(7월 3화 이후 23%)</div>
+      </div>
+      <div class="card-body">
+        <div class="col">
+          <h3>이달 종합</h3>
+          <ul class="issues">
+            <li><span class="axis">[성과]</span>6월 마지막 주 진입해 첫방 9.5%→2화 15.7%(순간 18.1%)로 급등, 동시간대 1위. 2021년 이후 최단기 15% 돌파로 하반기 기대작에 등극했다(7월 3화 이후 23%로 이어짐).</li>
+            <li><span class="axis">[화제 요인]</span>소지섭의 <b>13년 만의 SBS 복귀</b>와 '아빠 유니버스' 액션. 웹툰 원작의 '평범한 아빠 → 특수공작원 각성' 구조가 사이다 액션으로 구현되며 각성신·격투신이 클립으로 회자됐다.</li>
+            <li><span class="axis">[시청 반응]</span>2화 반등으로 호평 우세. <b>초반 클리셰</b>("전개 뻔하다·연출 올드")를 지적하는 목소리가 각성신 이후 잦아들었다. 별도로 <b>원작자(박태준) 논란 재점화</b>가 흥행 중 리스크로 부상해 변수로 남았다.</li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>화제포인트 · 참고</h3>
+          <div class="crux">🔀 <b>호불호 핵심</b> — '초반 클리셰'냐 '소지섭 액션'이냐. + <b>원작자 논란</b>이라는 작품 외 리스크.</div>
+          <ul class="refs">
+            <li><span class="rt">[커뮤니티]</span><a href="https://www.clien.net/service/board/park/19216912">"1화는 뻔했는데 2화부터 확 산다" 1화 리뷰</a><span class="rsrc">클리앙</span></li>
+            <li><span class="rt">[SNS]</span><a href="https://www.threads.com/@shikshik_e/post/DaEah8BD6cb/">"26년 최악의 오프닝" → 2화 반전 반응</a><span class="rsrc">Threads</span></li>
+            <li><span class="rt">[커뮤니티]</span><a href="https://theqoo.net/square/4222781366">2화 각성신 호평·화제 반응</a><span class="rsrc">더쿠</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 멋진 신세계 (종합 결산) -->
+  <section class="view detail" id="drama-newworld">
+    <a class="back" href="#overview">← 전체 보기</a>
+    <div class="card">
+      <div class="card-hero"><img src="img/newworld.jpg" alt="멋진 신세계" loading="lazy"></div>
+      <div class="card-top">
+        <div>
+          <span class="tag broadcast">방송</span>
+          <h2>멋진 신세계</h2>
+          <div class="meta">SBS 금토 · 5/8~6/20 완결 (14부작) · 임지연·허남준 · 빙의 판타지 사극</div>
+        </div>
+        <div class="buzz-block">
+          <div class="buzz-l">월간 화제성</div>
+          <div class="buzz-grade g4">높음</div>
+          <div class="buzz-steps"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+          <div class="buzz-delta flat">─ 완결</div>
+        </div>
+      </div>
+      <div class="wk-metrics">
+        <div class="m"><div class="ml">최종 성적</div><div class="mv">최고 11.8% <small>· 순간 14.1%</small></div></div>
+        <div class="m"><div class="ml">시청 반응</div><div class="mv">호평 66% <small class="flat">· 논란 적음</small></div></div>
+        <div class="m"><div class="ml">넷플릭스</div><div class="mv">비영어 1위 <small>· SBS 금토 최초</small></div></div>
+      </div>
+      <div class="chart">
+        <h3>전 회차 전국 시청률 (%) · 종합 결산</h3>
+        <svg viewBox="0 0 280 100" preserveAspectRatio="none" role="img">
+          <line class="axis" x1="10" y1="75" x2="270" y2="75"/>
+          <polyline class="line" points="10,54.5 30,48 50,46 70,45 90,27.5 110,23.5 130,28 150,23 170,27.5 190,25.5 210,25.5 230,22.5 250,21.5 270,16"/>
+          <circle class="pt" cx="10" cy="54.5" r="2.6"/><circle class="pt" cx="270" cy="16" r="3.4"/>
+          <text class="cval" x="10" y="49">4.1</text><text class="cval" x="270" y="11" text-anchor="end">11.8</text>
+          <text class="clab" x="10" y="90">1화</text><text class="clab" x="270" y="90" text-anchor="end">14화·完</text>
+        </svg>
+        <div class="cap">4.1% 출발해 꾸준한 우상향으로 최종회 자체 최고 11.8%(순간 14.1%) — 임지연 1인 2역이 화제 중심</div>
+      </div>
+      <div class="card-body">
+        <div class="col">
+          <h3>6월 종합 결산</h3>
+          <ul class="issues">
+            <li><span class="axis">[성과]</span>14부작을 완주하며 4.1%→최종 <b>11.8%</b>(순간 14.1%)로 꾸준히 우상향, 자체 최고를 경신하며 유종의 미. SBS 금토 사상 최초로 넷플릭스 비영어 글로벌 TOP10 1위를 기록했다.</li>
+            <li><span class="axis">[화제 요인]</span>임지연의 <b>1인 2역</b>(현대 무명배우 신서리 ↔ 조선 악녀 강단심) 빙의 연기가 화제 중심. 허남준과의 로맨스와 판타지 사극 결합이 후반 몰입을 끌어올렸다.</li>
+            <li><span class="axis">[시청 반응]</span>큰 논란 없이 안정적 호평으로 완결. 후반부 10%대 안착과 해피엔딩 만족도가 높았고, 대형 화제작 대비 화력은 중간이나 완성도·글로벌 성과로 실속을 챙긴 사례로 평가된다.</li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>화제포인트 · 참고</h3>
+          <div class="crux">✔ <b>호불호 적음</b> — 논란 없이 완성도로 인정받은 '조용한 성공'. 임지연 1인 2역이 화제의 축.</div>
+          <ul class="refs">
+            <li><span class="rt">[기사]</span><a href="https://v.daum.net/v/20260621093902678">"임지연·허남준 '멋진 신세계', 자체 최고 11.8%로 종영"</a><span class="rsrc">다음 연예</span></li>
+            <li><span class="rt">[기사]</span><a href="https://www.ggilbo.com/news/articleView.html?idxno=1164805">"'멋진 신세계' 최종회 11.8%…전생 극복한 해피엔딩"</a><span class="rsrc">금강일보</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 닥터 섬보이 (종합 결산) -->
+  <section class="view detail" id="drama-seomboy">
+    <a class="back" href="#overview">← 전체 보기</a>
+    <div class="card">
+      <div class="card-hero"><img src="img/seomboy.jpg" alt="닥터 섬보이" loading="lazy"></div>
+      <div class="card-top">
+        <div>
+          <span class="tag broadcast">방송</span>
+          <h2>닥터 섬보이</h2>
+          <div class="meta">ENA 월화 · ~6/30 완결 · 이재욱·신예은 · 웹툰 원작 의학 로맨스</div>
+        </div>
+        <div class="buzz-block">
+          <div class="buzz-l">월간 화제성</div>
+          <div class="buzz-grade g3">보통</div>
+          <div class="buzz-steps"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div>
+          <div class="buzz-delta flat">─ 완결</div>
+        </div>
+      </div>
+      <div class="wk-metrics">
+        <div class="m"><div class="ml">최종 성적</div><div class="mv">최고 5.0% <small>· 최종 4.5%</small></div></div>
+        <div class="m"><div class="ml">시청 반응</div><div class="mv">호평 68% <small class="flat">· 후반 '고구마' 지적</small></div></div>
+        <div class="m"><div class="ml">디즈니+</div><div class="mv">글로벌 TV 4위</div></div>
+      </div>
+      <div class="chart">
+        <h3>전 회차 전국 시청률 (%) · 종합 결산</h3>
+        <svg viewBox="0 0 280 100" preserveAspectRatio="none" role="img">
+          <line class="axis" x1="10" y1="75" x2="270" y2="75"/>
+          <polyline class="line" points="10,60 62,30 114,58 166,45 218,36 270,45"/>
+          <circle class="pt" cx="10" cy="60" r="2.6"/><circle class="pt" cx="270" cy="45" r="3.4"/>
+          <text class="cval" x="10" y="55">4.0</text><text class="cval" x="62" y="25">5.0</text><text class="cval" x="270" y="40" text-anchor="end">4.5</text>
+          <text class="clab" x="10" y="90">1화</text><text class="clab" x="270" y="90" text-anchor="end">최종회·完</text>
+        </svg>
+        <div class="cap">1화 4.0%로 ENA 월화극 역대 최고 출발 → 자체 최고 5.0% · 후반 널뛰기 끝에 최종 4.5%, 동시간대 1위 사수</div>
+      </div>
+      <div class="card-body">
+        <div class="col">
+          <h3>6월 종합 결산</h3>
+          <ul class="issues">
+            <li><span class="axis">[성과]</span>1화 4.0%로 <b>ENA 월화극 역대 최고 시청률로 출발</b>, 3화에 자체 최고 5.0%를 찍고 5회 연속 5%대를 유지하며 동시간대 1위를 지켰다. 채널 규모를 감안하면 선전. 디즈니+ TV쇼 부문 글로벌 톱10 4위에도 올랐다.</li>
+            <li><span class="axis">[화제 요인]</span>이재욱·신예은의 <b>의학 로맨스</b> 케미와 웹툰 원작의 섬마을 배경. 종영을 앞두고 본격화된 두 사람의 로맨스와 포옹 엔딩이 마지막 회차의 화제를 모았다.</li>
+            <li><span class="axis">[시청 반응]</span>탄탄한 콘크리트 시청층은 확보했으나, 후반부 <b>'고구마' 전개</b>와 서브 인물 등판으로 시청률이 널뛰며 아쉬움도 남겼다. 대중적 화력은 보통 수준으로, 채널 대비 '실속형' 성공으로 평가된다.</li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>화제포인트 · 참고</h3>
+          <div class="crux">🔀 <b>호불호 핵심</b> — '안정적 콘크리트층'이냐 '후반 고구마 답답함'이냐. 채널 규모 대비 선전은 공통 인정.</div>
+          <ul class="refs">
+            <li><span class="rt">[기사]</span><a href="https://www.mt.co.kr/entertainment/2026/06/03/2026060308207224882">"'닥터 섬보이', 이재욱X신예은 통했다…자체 최고 5.0%"</a><span class="rsrc">머니투데이</span></li>
+            <li><span class="rt">[기사]</span><a href="https://www.mt.co.kr/entertainment/2026/06/30/2026063008447255373">"'닥터 섬보이' 신예은, 이재욱 포옹 엔딩…시청률 4.5% 종영"</a><span class="rsrc">머니투데이</span></li>
+            <li><span class="rt">[평론]</span><a href="https://www.tenasia.co.kr/article/2026062941804">"종영 앞두고 시청률 널뛰었다…고구마 벗은 로코물"</a><span class="rsrc">텐아시아</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 오십프로 (종합 결산) -->
+  <section class="view detail" id="drama-ohsibpro">
+    <a class="back" href="#overview">← 전체 보기</a>
+    <div class="card">
+      <div class="card-hero"><img src="img/ohsibpro.jpg" alt="오십프로" loading="lazy"></div>
+      <div class="card-top">
+        <div>
+          <span class="tag broadcast">방송</span>
+          <h2>오십프로</h2>
+          <div class="meta">MBC 금토 · 5/22~6/27 완결 (12부작) · 신하균·오정세·허성태 · 첩보 B급 코미디</div>
+        </div>
+        <div class="buzz-block">
+          <div class="buzz-l">월간 화제성</div>
+          <div class="buzz-grade g3">보통</div>
+          <div class="buzz-steps"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div>
+          <div class="buzz-delta flat">─ 완결</div>
+        </div>
+      </div>
+      <div class="wk-metrics">
+        <div class="m"><div class="ml">최종 성적</div><div class="mv">최고 8.2% <small>· 최종 5.0%</small></div></div>
+        <div class="m"><div class="ml">시청 반응</div><div class="mv">호평 70% <small class="flat">· 팬층 확보</small></div></div>
+        <div class="m"><div class="ml">비고</div><div class="mv">12부작 완주</div></div>
+      </div>
+      <div class="chart">
+        <h3>전 회차 전국 시청률 (%) · 종합 결산</h3>
+        <svg viewBox="0 0 280 100" preserveAspectRatio="none" role="img">
+          <line class="axis" x1="10" y1="75" x2="270" y2="75"/>
+          <polyline class="line" points="10,65 62,57.9 114,52 166,55.5 218,46.1 270,20"/>
+          <circle class="pt" cx="10" cy="65" r="2.6"/><circle class="pt" cx="270" cy="20" r="3.4"/>
+          <text class="cval" x="10" y="60">4.4</text><text class="cval" x="270" y="15" text-anchor="end">8.2</text>
+          <text class="clab" x="10" y="90">1화 5/22</text><text class="clab" x="270" y="90" text-anchor="end">최종회 6/27</text>
+        </svg>
+        <div class="cap">첫방 4.4%·줄곧 5~6%대 → 11화 자체 최고 6.0% → 최종회 최고 8.2%(최종 5.0%)로 마무리</div>
+      </div>
+      <div class="card-body">
+        <div class="col">
+          <h3>6월 종합 결산</h3>
+          <ul class="issues">
+            <li><span class="axis">[성과]</span>12부작을 완주하며 첫방 4.4%에서 줄곧 5~6%대를 유지, 11화에 자체 최고 6.0%를 찍고 <b>최종회에서 최고 8.2%</b>까지 끌어올렸다(최종 5.0%). 폭발적 대박은 아니나 안정적으로 유종의 미를 거뒀다.</li>
+            <li><span class="axis">[화제 요인]</span>신하균·오정세·허성태 <b>3인의 공조 케미</b>. 10년 전 실패한 영선도 임무를 재도전하는 중년들의 우정과 첩보 액션에 B급 코미디를 얹은 결이 마니아층을 만들었다.</li>
+            <li><span class="axis">[시청 반응]</span>"조용한 웰메이드"라는 <b>충성 팬층</b>을 확보. 화제성은 크지 않았지만 완주한 시청자의 만족도가 높아, 시청률 규모보다 호평 비율이 앞서는 '팬덤형' 종영작으로 남았다.</li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>화제포인트 · 참고</h3>
+          <div class="crux">✔ <b>호불호 적음</b> — 대중 화력은 낮았으나 완주 시청층의 만족도가 높은 '조용한 웰메이드'.</div>
+          <ul class="refs">
+            <li><span class="rt">[기사]</span><a href="https://www.starnewskorea.com/broadcast-drama/2026/06/28/2026062810155566024">"'오십프로' 신하균·오정세·허성태, 10년 전 임무 완수 피날레…최고 8.2%"</a><span class="rsrc">스타뉴스</span></li>
+            <li><span class="rt">[평론]</span><a href="https://tvreport.co.kr/breaking/article/1057707/">"2회 만에 최고 18% 대어 등판 → 5%대로 조용히 퇴장한 韓 드라마"</a><span class="rsrc">TV리포트</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 허브 ============ -->
+  <section class="view" id="overview">
+    <header class="masthead">
+      <p class="kicker">Monthly Drama Buzz Report</p>
+      <div class="brand">
+        <h1>드라마 반응 <span class="k">월간</span></h1>
+        <div class="issue">
+          <div class="datenav">
+            <a class="datebtn" href="monthly-2026-05.html" title="지난 달">◀</a>
+            <span class="weeklabel">2026 · 6월</span>
+            <a class="datebtn" href="monthly-2026-07.html" title="다음 달">▶</a>
+          </div>
+          <div class="issue-sub">6/1~6/30 종합 · 7/6(월) 오전 발행 · 집계 7편</div>
+        </div>
+      </div>
+    </header>
+
+    <section class="summary">
+      <div class="stat"><div class="n">7</div><div class="l">6월 집계 작품</div></div>
+      <div class="stat"><div class="n small">신작 2 · 결산 5</div><div class="l">발송일(7/6) 기준 2주 내 론칭 = 신작</div></div>
+    </section>
+
+    <p class="sect-label">6월 화제성 톱 랭킹 · 눌러서 종합 분석</p>
+    <div class="navlist">
+
+      <a class="nav-row" href="#drama-chamgyoyuk">
+        <span class="nav-rank">1</span>
+        <span class="nav-thumb"><img src="img/chamgyoyuk.jpg" alt="참교육" loading="lazy"></span>
+        <span class="nav-title"><span class="tag original">OTT</span>참교육<span class="nav-ep">넷플릭스 · 6/5</span></span>
+        <span class="nav-grade-wrap"><span class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span> <span class="nav-grade g5">매우 높음</span></span>
+        <span class="nav-head">넷플 비영어 다주 연속 글로벌 1위 — 6월 압도적 최대 화제(폭력미화 논란 병존)</span>
+        <span class="nav-meta"><span class="m1">호평 70%</span><span class="m2">혹평 18%</span></span>
+        <span class="nav-go">종합 분석 →</span>
+      </a>
+
+      <a class="nav-row" href="#drama-maneutjul">
+        <span class="nav-rank">2</span>
+        <span class="nav-thumb"><img src="img/maneutjul.jpg" alt="맨 끝줄 소년" loading="lazy"></span>
+        <span class="nav-title"><span class="tag original">OTT</span>맨 끝줄 소년<span class="nav-ep">넷플릭스 · 6/26</span><span class="event new">신작</span></span>
+        <span class="nav-grade-wrap"><span class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span> <span class="nav-grade g4">높음</span></span>
+        <span class="nav-head">최민식 데뷔작, 글로벌 8위·국내 2위 — '무겁고 난해' 호불호</span>
+        <span class="nav-meta"><span class="m1">호평 62%</span><span class="m2">혹평 22%</span></span>
+        <span class="nav-go">종합 분석 →</span>
+      </a>
+
+      <a class="nav-row" href="#drama-kangchairman">
+        <span class="nav-rank">3</span>
+        <span class="nav-thumb"><img src="img/kangchairman.jpg" alt="신입사원 강회장" loading="lazy"></span>
+        <span class="nav-title"><span class="tag broadcast">방송</span>신입사원 강회장<span class="nav-ep">JTBC 토일 · ~7/5</span></span>
+        <span class="nav-grade-wrap"><span class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span> <span class="nav-grade g4">높음</span></span>
+        <span class="nav-head">3.7%→12%대 매회 상승·JTBC 토일 최고 경신, TV 통합 화제성 2위 — 이준영 리마인드 라이프</span>
+        <span class="nav-meta"><span class="m1">호평 68%</span><span class="m2"><span class="up">▲</span> 상승</span></span>
+        <span class="nav-go">종합 분석 →</span>
+      </a>
+
+      <a class="nav-row" href="#drama-kimbujang">
+        <span class="nav-rank">4</span>
+        <span class="nav-thumb"><img src="img/kimbujang.jpg" alt="김부장" loading="lazy"></span>
+        <span class="nav-title"><span class="tag broadcast">방송</span>김부장<span class="nav-ep">SBS 금토 · 6/26</span><span class="event new">신작</span></span>
+        <span class="nav-grade-wrap"><span class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span> <span class="nav-grade g4">높음</span></span>
+        <span class="nav-head">2회 만에 15.7% 폭발, 소지섭 복귀 — '초반 클리셰' vs 액션 + 원작자 논란</span>
+        <span class="nav-meta"><span class="m1">호평 62%</span><span class="m2"><span class="up">▲</span> 급등</span></span>
+        <span class="nav-go">종합 분석 →</span>
+      </a>
+
+      <a class="nav-row" href="#drama-newworld">
+        <span class="nav-rank">5</span>
+        <span class="nav-thumb"><img src="img/newworld.jpg" alt="멋진 신세계" loading="lazy"></span>
+        <span class="nav-title"><span class="tag broadcast">방송</span>멋진 신세계<span class="nav-ep">SBS 금토 · ~6/20</span></span>
+        <span class="nav-grade-wrap"><span class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span> <span class="nav-grade g4">높음</span></span>
+        <span class="nav-head">14부작 최종 11.8% 우상향 완결, SBS 금토 최초 넷플 비영어 1위 — 임지연 1인 2역</span>
+        <span class="nav-meta"><span class="m1">호평 66%</span><span class="m2">완결</span></span>
+        <span class="nav-go">종합 분석 →</span>
+      </a>
+
+      <a class="nav-row" href="#drama-seomboy">
+        <span class="nav-rank">6</span>
+        <span class="nav-thumb"><img src="img/seomboy.jpg" alt="닥터 섬보이" loading="lazy"></span>
+        <span class="nav-title"><span class="tag broadcast">방송</span>닥터 섬보이<span class="nav-ep">ENA 월화 · ~6/30</span></span>
+        <span class="nav-grade-wrap"><span class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span> <span class="nav-grade g3">보통</span></span>
+        <span class="nav-head">ENA 월화극 역대 최고 출발·자체 최고 5.0%·동시간대 1위 — 이재욱·신예은 의학 로맨스</span>
+        <span class="nav-meta"><span class="m1">호평 68%</span><span class="m2">완결</span></span>
+        <span class="nav-go">종합 분석 →</span>
+      </a>
+
+      <a class="nav-row" href="#drama-ohsibpro">
+        <span class="nav-rank">7</span>
+        <span class="nav-thumb"><img src="img/ohsibpro.jpg" alt="오십프로" loading="lazy"></span>
+        <span class="nav-title"><span class="tag broadcast">방송</span>오십프로<span class="nav-ep">MBC 금토 · ~6/27</span></span>
+        <span class="nav-grade-wrap"><span class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span> <span class="nav-grade g3">보통</span></span>
+        <span class="nav-head">12부작 완주·최종회 최고 8.2%(최종 5.0%) — 신하균·오정세·허성태 3인 공조, "조용한 웰메이드"</span>
+        <span class="nav-meta"><span class="m1">호평 70%</span><span class="m2">완결</span></span>
+        <span class="nav-go">종합 분석 →</span>
+      </a>
+
+    </div>
+
+    <p class="sect-label">이달의 트렌드 · 종합</p>
+    <div class="trend-box">
+      6월은 <b>넷플릭스가 화제를 장악</b>한 달이다. <b>참교육</b>(비영어 다주 연속 글로벌 1위·출연자 화제성 1위)과 신작 <b>맨끝줄소년</b>(최민식·41개국)이 OTT 쌍끌이를 이뤘고, 두 작품 모두 '사이다 vs 폭력미화', '완성도 vs 난해함'의 <b>호불호 논쟁</b>이 화제성을 되레 키우는 패턴을 보였다. 방송가에서는 <b>신입사원 강회장</b>(3.7%→12%대)이 매회 상승하는 뒷심으로 TV 화제성 2위를 지켰고, <b>멋진 신세계</b>(11.8%)·오십프로·닥터 섬보이 등 상반기 편성작들이 안정적 완성도로 마무리됐다. 월말에는 <b>김부장</b>(2회 15.7%)이 소지섭 복귀와 함께 하반기 반등의 신호탄을 쐈다. 전반적으로 'OTT 신작 폭발 + 방송 완결작의 실속'이 공존한 전환기적 한 달.
+    </div>
+
+    <footer>
+      <b>다음 리포트</b> 월간 8월 첫 월요일(전월 7월) · 주간 매주 월요일 · 데일리 매일 오전<br>
+      <b>태그 기준</b> 발송일(7/6) 기준 2주 내(6/22~) 론칭작만 '신작'(맨끝줄소년·김부장) · 그 외는 종합 결산<br>
+      <b>집계 제외</b> 사랑을 처방해 드립니다(KBS2·50부작 장편) · 결혼의 완성(KBS2, 7/4 첫방=7월작) · 파친코(애플TV+)·킬러들의 쇼핑몰(디즈니+) 등 OTT 오리지널의 방송사 재방영<br>
+      집계 출처: 6월 일간·주간 리포트 + 구글 뉴스 RSS · 커뮤니티(더쿠·디시·클리앙)·평론 · 데이터: 스타뉴스·머니투데이·톱스타뉴스·위키트리·텐아시아 등
+    </footer>
+  </section>
+</div>
+
+<style>
+  html{-webkit-text-size-adjust:100%}
+  img,svg{max-width:100%}
+  .chart svg{width:100%;height:auto}
+  @media(max-width:680px){
+    .wrap{padding:18px 14px 48px}
+    .brand{gap:8px}
+    .brand h1{font-size:22px}
+    .issue{text-align:left}
+    .datenav{justify-content:flex-start;flex-wrap:wrap}
+    .board{display:flex}
+    .board-tab{flex:1;text-align:center;padding:7px 6px}
+    .card h2{font-size:19px}
+    .card-top{gap:10px;padding:14px 14px 10px}
+    .buzz-grade{font-size:18px}
+    .col{padding:13px 14px}
+    .issues li{font-size:13.5px}
+  }
+</style>
+
+  <script src="https://mbcrico-alt.github.io/drama-daily/share.js" defer></script>
+</body>
+</html>
